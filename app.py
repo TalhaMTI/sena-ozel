@@ -1,10 +1,13 @@
 from datetime import datetime
+import os
 import streamlit as st
 
 # Sayfa yapılandırması
-st.set_page_config(page_title="Sena'ya Özel", page_icon="❤️", layout="centered")
+st.set_page_config(
+    page_title="Sena'ya Özel", page_icon="❤️", layout="centered"
+)
 
-# Manifest ve PWA entegrasyonu için HTML head meta etiketi
+# Manifest ve PWA entegrasyonu
 st.markdown(
     """
     <head>
@@ -39,20 +42,27 @@ if not st.session_state.giris_yapildi:
       st.error("Hatalı şifre!")
   st.stop()
 
-# --- GİRİŞ YAPILDIKTAN SONRAKİ ANA SAYFA ---
+# --- GİRİŞ YAPILDIKTAN SONRAKİ ANA SAYFA VE İÇERİKLER ---
 st.title("Sena'ya Özel ❤️")
 
-# Hedef tarih ve bugünün tarihi (Bugün: 22 Eylül 2026)
+# Sayaç hesaplaması (Bugünden hedefe veya hedeften bugüne doğru artış)
 hedef_tarih = datetime(2026, 9, 19)
 simdi = datetime.now()
-
-# Sayaç düzeltmesi: Geçen süreyi doğru hesaplamak için (Şimdiki zaman - Hedef tarih)
 fark = simdi - hedef_tarih
 gun = fark.days
 
-st.subheader("Birlikte Geçecek / Geçen Zaman")
+st.subheader("Birlikte Geçen Zaman")
 st.metric(label="Geçen Gün Sayısı", value=f"{gun} gün")
 
-st.write(
-    "İyi ki varsın, bu özel alan tamamen senin için tasarlandı ve hazırlandı."
+# Orijinal tasarım bileşenlerin ve kapanış etiketleri
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <p>İyi ki varsın...</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
+
+st.markdown("</div>", unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
