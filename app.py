@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 import streamlit as st
 
@@ -174,12 +174,13 @@ if st.session_state.giris_yapildi:
   )
   st.balloons()
 
-  # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI (Doğru Hesaplama) ---
+  # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI (TR Saat Düzeltmeli) ---
   st.markdown("---")
   st.header("⏳ 💞 Bizim Zamanımız 💞")
 
   baslangic_tarihi = datetime(2026, 9, 19, 15, 11, 0)
-  simdi = datetime.now()
+  # Sunucu UTC saatine Türkiye saati (+3 saat) eklenerek senkronize edildi
+  simdi = datetime.utcnow() + timedelta(hours=3)
   fark = simdi - baslangic_tarihi
 
   toplam_saniye = int(fark.total_seconds())
