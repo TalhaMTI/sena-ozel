@@ -1,29 +1,45 @@
+from datetime import datetime
 import streamlit as st
 
-# Sayfaya tarayıcının manifest olarak algılayacağı meta etiketi ekleyelim
-st.markdown(
-    """
-    <head>
-        <link rel="manifest" href="data:application/manifest+json;charset=utf-8,{
-            'name': 'Sena\'ya Özel',
-            'short_name': 'Sena',
-            'start_url': './',
-            'display': 'standalone',
-            'background_color': '#0e1117',
-            'theme_color': '#0e1117',
-            'icons': []
-        }">
-    </head>
-""",
-    unsafe_allow_html=True,
+# Sayfa yapılandırması
+st.set_page_config(
+    page_title="Sena'ya Özel", page_icon="❤️", layout="centered"
 )
 
-import streamlit as st
-import os
-from datetime import datetime
-@@ -268,4 +288,4 @@
-   </div>
-   """, unsafe_allow_html=True)
+# Şifre koruması (Doğru şifre: 19/09/2026)
+OG_SIFRE = "19/09/2026"
 
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+if "giris_yapildi" not in st.session_state:
+  st.session_state.giris_yapildi = False
+
+if not st.session_state.giris_yapildi:
+  st.title("Özel Alan 🔒")
+  sifre_input = st.text_input("Lütfen şifreyi girin:", type="password")
+  if st.button("Giriş Yap"):
+    if sifre_input == OG_SIFRE:
+      st.session_state.giris_yapildi = True
+      st.rerun()
+    else:
+      st.error("Hatalı şifre!")
+  st.stop()
+
+# --- GİRİŞ YAPILDIKTAN SONRAKİ ANA SAYFA ---
+st.title("Sena'ya Özel ❤️")
+
+# Sayaç hesaplaması (Doğru yönde artan gün sayısı)
+hedef_tarih = datetime(2026, 9, 19)
+simdi = datetime.now()
+fark = simdi - hedef_tarih
+gun = fark.days
+
+st.subheader("Birlikte Geçen Zaman")
+st.metric(label="Geçen Gün Sayısı", value=f"{gun} gün")
+
+st.markdown(
+    """
+    <div style="text-align: center;">
+        <p>İyi ki varsın...</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
