@@ -429,4 +429,3 @@ if st.session_state.giris_yapildi:
   )
 
   st.markdown("</div>", unsafe_allow_html=True)
-```[cite: 3]
