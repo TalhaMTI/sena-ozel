@@ -8,19 +8,19 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS
+# Sonsuzluğun Başlangıcı Temalı Ultra Şık CSS
 st.markdown(
     """
     <style>
     .stApp {
-        background: linear-gradient(135deg, #090d16 0%, #161f37 40%, #2a1b3d 100%);
+        background: linear-gradient(135deg, #05050f 0%, #0d1224 40%, #1a102f 100%);
         color: #f8fafc;
     }
     .welcome-container {
         background: rgba(255, 255, 255, 0.04);
         padding: 45px 30px;
         border-radius: 28px;
-        border: 1px solid rgba(255, 110, 64, 0.4);
+        border: 1px solid rgba(138, 43, 226, 0.4);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(15px);
         text-align: center;
@@ -34,27 +34,27 @@ st.markdown(
     }
     .heart-icon {
         font-size: 55px;
-        color: #ff6e40;
+        color: #b388ff;
         margin-bottom: 12px;
         animation: pulse 2s infinite;
     }
     @keyframes pulse {
-        0% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
-        50% { transform: scale(1.12); text-shadow: 0 0 25px rgba(255,110,64,0.8); }
-        100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
+        0% { transform: scale(1); text-shadow: 0 0 10px rgba(179,136,255,0.4); }
+        50% { transform: scale(1.12); text-shadow: 0 0 25px rgba(179,136,255,0.8); }
+        100% { transform: scale(1); text-shadow: 0 0 10px rgba(179,136,255,0.4); }
     }
     .stTextInput > div > div > input {
         background-color: rgba(15, 23, 42, 0.95) !important;
         color: #ffffff !important;
         border-radius: 14px !important;
-        border: 2px solid #ff6e40 !important;
+        border: 2px solid #b388ff !important;
         text-align: center;
         font-size: 20px;
         letter-spacing: 2px;
         padding: 12px;
     }
     .stButton>button {
-        background: linear-gradient(45deg, #ff6e40, #ff9f43);
+        background: linear-gradient(45deg, #7c4dff, #b388ff);
         color: white;
         border: none;
         border-radius: 14px;
@@ -62,16 +62,16 @@ st.markdown(
         font-weight: bold;
         font-size: 16px;
         width: 100%;
-        box-shadow: 0 4px 15px rgba(255, 110, 64, 0.4);
+        box-shadow: 0 4px 15px rgba(124, 77, 255, 0.4);
         transition: 0.3s;
         margin-top: 12px;
     }
     .stButton>button:hover {
-        background: linear-gradient(45deg, #ff5722, #ff8f00);
-        box-shadow: 0 6px 20px rgba(255, 110, 64, 0.7);
+        background: linear-gradient(45deg, #651fff, #7c4dff);
+        box-shadow: 0 6px 20px rgba(124, 77, 255, 0.7);
     }
     h1, h2, h3 {
-        color: #ffb74d !important;
+        color: #d1c4e9 !important;
         font-family: 'Helvetica Neue', sans-serif;
         letter-spacing: 0.5px;
     }
@@ -82,11 +82,11 @@ st.markdown(
         from { opacity: 0; transform: scale(0.98); }
         to { opacity: 1; transform: scale(1); }
     }
-    .alanya-card {
+    .universe-card {
         background: rgba(255, 255, 255, 0.03);
         padding: 25px;
         border-radius: 20px;
-        border-left: 6px solid #ff6e40;
+        border-left: 6px solid #b388ff;
         border-right: 1px solid rgba(255, 255, 255, 0.05);
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -97,12 +97,12 @@ st.markdown(
     }
     .counter-box {
         text-align: center;
-        background: linear-gradient(135deg, rgba(255, 110, 64, 0.12), rgba(255, 75, 43, 0.05));
-        border: 2px solid rgba(255, 110, 64, 0.4);
+        background: linear-gradient(135deg, rgba(124, 77, 255, 0.12), rgba(63, 81, 181, 0.05));
+        border: 2px solid rgba(179, 136, 255, 0.4);
         padding: 25px;
         border-radius: 22px;
         margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(255, 110, 64, 0.15);
+        box-shadow: 0 10px 30px rgba(124, 77, 255, 0.15);
     }
     .birthday-box-sena {
         text-align: center;
@@ -123,14 +123,14 @@ st.markdown(
         box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);
     }
     .welcome-banner {
-        background: linear-gradient(90deg, rgba(255,110,64,0.15), rgba(255,183,77,0.15));
+        background: linear-gradient(90deg, rgba(124,77,255,0.15), rgba(179,136,255,0.15));
         padding: 15px;
         border-radius: 15px;
-        border: 1px solid rgba(255,183,77,0.3);
+        border: 1px solid rgba(179,136,255,0.3);
         text-align: center;
         font-size: 20px;
         font-weight: bold;
-        color: #ffb74d;
+        color: #d1c4e9;
         margin-bottom: 20px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
@@ -146,13 +146,29 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası (İrem Derici - Aşkımız Olay Olacak eklendi)
+# Şarkı Listesi Hafızası (Doğrudan Spotify URI'leri veya arama linkleri ile güncellendi)
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
-        ("İrem Derici - Aşkımız Olay Olacak", "Tam hayallerimiz gibisin, aşkımız olay olacak! ✨"),
-        ("Kıraç - Endamın Yeter", "Bizim Şarkımız ✨"),
-        ("Neşet Ertaş - Yalan Dünya", "Anadolu Esintisi 🌿"),
-        ("Sagopa Kajmer - Galiba", "Gece Yürüyüşleri 🌙"),
+        (
+            "İrem Derici - Aşkımız Olay Olacak",
+            "Tam hayallerimiz gibisin, aşkımız olay olacak! ✨",
+            "https://open.spotify.com/search/İrem%20Derici%20Aşkımız%20Olay%20Olacak",
+        ),
+        (
+            "Kıraç - Endamın Yeter",
+            "Bizim Şarkımız ✨",
+            "https://open.spotify.com/search/Kıraç%20Endamın%20Yeter",
+        ),
+        (
+            "Neşet Ertaş - Yalan Dünya",
+            "Anadolu Esintisi 🌿",
+            "https://open.spotify.com/search/Neşet%20Ertaş%20Yalan%20Dünya",
+        ),
+        (
+            "Sagopa Kajmer - Galiba",
+            "Gece Yürüyüşleri 🌙",
+            "https://open.spotify.com/search/Sagopa%20Kajmer%20Galiba",
+        ),
     ]
 
 # Giriş Ekranı
@@ -160,15 +176,15 @@ if not st.session_state.giris_yapildi:
     st.markdown(
         """
         <div class="welcome-container">
-            <div class="heart-icon">❤️</div>
-            <h2 style="margin-bottom: 5px;">Alanya'nın Gizli Sığınağı</h2>
-            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Bu dijital dünya sadece ikimiz için kuruldu.</p>
+            <div class="heart-icon">🌌</div>
+            <h2 style="margin-bottom: 5px;">Sonsuzluğun Başlangıcı</h2>
+            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Bu dijital evren sadece ikimiz için kuruldu.</p>
     """,
         unsafe_allow_html=True,
     )
 
     st.markdown(
-        '<p style="color: #ffb74d; font-size: 13px; font-weight: 500;'
+        '<p style="color: #d1c4e9; font-size: 13px; font-weight: 500;'
         ' margin-bottom: 5px; text-align: center;">🔒 İkimiz için de en özel'
         " gün...</p>",
         unsafe_allow_html=True,
@@ -195,7 +211,7 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
         <div class="welcome-banner">
-            ✨ Kapı aralandı... Hoş geldin sevgilim! 💞
+            ✨ Sonsuzluk kapısı aralandı... Hoş geldin sevgilim! 💞
         </div>
     """,
         unsafe_allow_html=True,
@@ -207,7 +223,7 @@ if st.session_state.giris_yapildi:
 
     # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI ---
     st.markdown("---")
-    st.header("⏳ 💞 Bizim Zamanımız 💞")
+    st.header("⏳ 💞 Sonsuzluğa Adım Atalı 💞")
 
     baslangic_tarihi = datetime(2026, 9, 19, 15, 11, 0)
     fark = simdi - baslangic_tarihi
@@ -223,9 +239,9 @@ if st.session_state.giris_yapildi:
     st.markdown(
         f"""
     <div class="counter-box">
-        <h3 style="color: #ffb74d; margin: 0; font-size: 20px;">Birlikte Geçen Her Anımız</h3>
-        <p style="font-size: 32px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(255,110,64,0.5);">{gun} Gün, {saat} Saat, {dakika} Dakika</p>
-        <p style="color: #ffd54f; font-size: 14px; margin: 0; font-weight: 500;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
+        <h3 style="color: #d1c4e9; margin: 0; font-size: 20px;">Birlikte Geçen Her Anımız</h3>
+        <p style="font-size: 32px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(179,136,255,0.5);">{gun} Gün, {saat} Saat, {dakika} Dakika</p>
+        <p style="color: #b388ff; font-size: 14px; margin: 0; font-weight: 500;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
     </div>
     """,
         unsafe_allow_html=True,
@@ -291,29 +307,28 @@ if st.session_state.giris_yapildi:
             " klasörüne ekleyebilirsin."
         )
 
-    # --- 3. BÖLÜM: ALANYA KALESİ VE ANA GÖRSEL ---
+    # --- 3. BÖLÜM: SONSUZLUK VE ANA GÖRSEL ---
     st.markdown("---")
-    st.header("🏰 Alanya Kalesi'nden Akdeniz'e Bakış")
+    st.header("🌌 Sonsuzluğun Ufku")
 
-    img_path = "alanya.jpg"
+    img_path = "alanya.jpg"  # Dosya adı aynı kalabilir, istersen görseli değiştirebilirsin
     if os.path.exists(img_path):
         st.image(
             img_path,
-            caption="Kızılkule'nin gölgesinde Akdeniz mavisi...",
+            caption="Yıldızların altında, el ele...",
             use_container_width=True,
         )
     else:
         st.warning(
-            "⚠️ Lütfen Alanya fotoğrafını proje klasörüne 'alanya.jpg' adıyla"
-            " kaydet."
+            "⚠️ Lütfen fotoğrafı proje klasörüne 'alanya.jpg' adıyla kaydet."
         )
 
     st.markdown(
         """
-    <div class="alanya-card">
-    Alanya Kalesi'nin surlarından denize bakarken düşündüm de; bu Akdeniz ne kadar derin ve uçsuz bucaksız olursa olsun, benim gözümde senin bakışının derinliğinin yanında sadece sığ bir su damlası kalır. 
-    Şehrin bütün ışıkları sönse, Kızılkule'nin feneri bile sönük kalsa, senin o gülüşün ömrümün her köşesini aydınlatmaya yeter. 
-    Bu site; dünyanın gürültüsünden uzakta, dalga seslerinin arasına sakladığımız, sadece ruhunun huzur bulacağı bizim dijital limanımız...
+    <div class="universe-card">
+    Zamanın akıp gittiği bu evrende, yıldızların altında düşündüm de; bu evren ne kadar büyük ve uçsuz bucaksız olursa olsun, benim gözümde senin bakışının derinliğinin yanında sadece sığ bir detay kalır.<br>
+    Bütün ışıklar sönse, gökyüzündeki bütün takımyıldızları kaybolsa bile, senin o gülüşün ömrümün her köşesini aydınlatmaya yeter.<br>
+    Bu site; dünyanın gürültüsünden uzakta, kalplerimizin atışına sakladığımız, sadece ruhunun huzur bulacağı bizim sonsuzluk limanımız...
     </div>
     """,
         unsafe_allow_html=True,
@@ -336,7 +351,7 @@ if st.session_state.giris_yapildi:
         else:
             st.info("📷 Klasöre 'fotograf2.jpg' ekle")
 
-    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ (KONYA & ALANYA) ---
+    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ ---
     st.markdown("---")
     st.header("🎯 Birlikte Yapacaklarımız")
     st.write(
@@ -358,103 +373,115 @@ if st.session_state.giris_yapildi:
             " lokantasında veya restoranda baş başa yemek yemek 🍽️"
         ),
         (
-            "Alanya Kalesi surlarında gün batımına karşı kahve içip manzarayı"
+            "Yüksek bir tepede gün batımına karşı kahve içip manzarayı"
             " izlemek 🏰"
         ),
-        (
-            "Kleopatra Plajı'nda dalga sesleri eşliğinde akşam yürüyüşü"
-            " yapmak 🌊"
-        ),
-        ("Dim Çayı'nın serin sularında baş başa huzurlu vakit geçirmek 🌿"),
+        ("Sahilde dalga sesleri eşliğinde akşam yürüyüşü yapmak 🌊"),
+        ("Doğanın kalbinde baş başa huzurlu vakit geçirmek 🌿"),
     ]
 
     for item in bucket_list:
         st.checkbox(item, value=False)
 
-    # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ VE SENA'NIN EKLEME KUTUSU ---
+    # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ VE SPOTIFY ENTEGRASYONU ---
     st.markdown("---")
     st.header("🎵 Geleceğin Şarkı Listesi & Ortak Nota")
     st.markdown(
         """
-    <div class="alanya-card">
-    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖
+    <div class="universe-card">
+    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi doğrudan Spotify üzerinden büyütebiliriz! 💖
     </div>
     """,
         unsafe_allow_html=True,
     )
 
-    # Mevcut şarkıları listele
-    for sarki, aciklama in st.session_state.sarki_listesi:
-        st.markdown(f"🎧 **{sarki}** — *{aciklama}*")
+    # Mevcut şarkıları ve doğrudan tıklanabilir Spotify bağlantılarını listele
+    for sarki, aciklama, spotify_link in st.session_state.sarki_listesi:
+        st.markdown(f"🎧 **[{sarki}]({spotify_link})** — *{aciklama}*")
 
     st.markdown("---")
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
-    yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı:", placeholder="Örn: İrem Derici - Aşkımız Olay Olacak")
-    yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Arabada dinlemelik...")
+    yeni_sarki = st.text_input(
+        "Şarkı Adı ve Sanatçı:",
+        placeholder="Örn: İrem Derici - Aşkımız Olay Olacak",
+    )
+    yeni_not = st.text_input(
+        "Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Arabada dinlemelik..."
+    )
 
-    if st.button("Şarkıyı Listeye Ekle 🎶"):
+    if st.button("Şarkıyı Listeye Ekle ve Spotify'da Aç 🎶"):
         if yeni_sarki:
-            st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız"))
-            st.success(f"Harika! '{yeni_sarki}' başarıyla listemize eklendi! 🎉")
-            
-            # Spotify'ı otomatik yeni sekmede açmak için JavaScript bileşeni tetiklenir
-            spotify_url = f"https://open.spotify.com/search/{yeni_sarki.replace(' ', '%20')}"
-            components.html(f"""
+            s_url = f"https://open.spotify.com/search/{yeni_sarki.replace(' ', '%20')}"
+            st.session_state.sarki_listesi.append(
+                (
+                    yeni_sarki,
+                    yeni_not if yeni_not else "Bizim Şarkımız",
+                    s_url,
+                )
+            )
+            st.success(
+                f"Harika! '{yeni_sarki}' başarıyla listemize eklendi ve"
+                " Spotify'da açılıyor! 🎉"
+            )
+
+            # Spotify'ı otomatik yeni sekmede açmak için JavaScript bileşeni
+            components.html(
+                f"""
                 <script>
-                    window.open("{spotify_url}", "_blank");
+                    window.open("{s_url}", "_blank");
                 </script>
-            """, height=0)
-            
+            """,
+                height=0,
+            )
+
             st.rerun()
         else:
             st.warning("Lütfen eklemek istediğin şarkı adını boş bırakma sevgilim.")
 
-    # --- 7. BÖLÜM: ONAYLANAN ÖZEL NOT ---
+    # --- 7. BÖLÜM: ÖZEL NOT ---
     st.markdown("---")
     st.header("✨ Kalbimden Dökülenler")
     st.markdown(
         """
-    <div class="alanya-card">
+    <div class="universe-card">
     Hayatta her şeyin bir sıradanlığı varken, seninle her an bambaşka bir hikayeye dönüşüyor. İlk gördüğüm andan beri bende bıraktığın o özel his, zaman geçtikçe çok daha derin ve anlamlı bir yere ulaştı.<br><br>
-    Bazen sokaklarda yürüyken, bazen arabada yan yana oturup sessizce yolu izlerken, bazen de sadece gözlerinin içine bakarken fark ediyorum ki; hayatın koşturmacası içinde en huzur bulduğum yer senin yanın. Dışarıdan bakıldığında belki kendi halinde, sert görünen biriyim ama konu sen olunca içimdeki o yumuşak ve korumacı tarafı sadece sen biliyorsun.<br><br>
+    Bazen sokaklarda yürüyken, bazen yan yana oturup sessizce yolu izlerken, bazen de sadece gözlerinin içine bakarken fark ediyorum ki; hayatın koşturmacası içinde en huzur bulduğum yer senin yanın. Dışarıdan bakıldığında belki kendi halinde, sert görünen biriyim ama konu sen olunca içimdeki o yumuşak ve korumacı tarafı sadece sen biliyorsun.<br><br>
     İyi ki yollarımız kesişti, iyi ki hayatımdasın. Seni çok seviyorum.
     </div>
     """,
         unsafe_allow_html=True,
     )
 
-    # --- 8. BÖLÜM: ALANYA ROTALARIMIZ ---
+    # --- 8. BÖLÜM: ORTAK ROTALARIMIZ ---
     st.markdown("---")
-    st.header("🗺️ Alanya'da Bizim Rotalarımız")
+    st.header("🗺️ Bizim Rotalarımız")
 
     rota = st.selectbox(
-        "Birlikte kaybolmak istediğimiz Alanya noktasını seç:",
+        "Birlikte kaybolmak istediğimiz noktayı seç:",
         [
             "Seçiniz...",
-            "Alanya Kalesi Surları (Gün Batımı)",
-            "Kleopatra Plajı Sahil Yürüyüşü",
-            "Kızılkule ve Liman Gezisi",
-            "Dim Çayı Serinliği",
+            "Tarihi Surlar ve Gün Batımı",
+            "Sonsuzluk Sahil Yürüyüşü",
+            "Tarihi Sokaklar ve Liman Gezisi",
+            "Doğanın Kalbinde Huzur",
         ],
     )
 
-    if rota == "Alanya Kalesi Surları (Gün Batımı)":
+    if rota == "Tarihi Surlar ve Gün Batımı":
         st.write(
-            "Tarihi surların tepesinde, uçsuz bucaksız Akdeniz manzarasına karşı"
-            " saatlerce konuşacağımız o huzur..."
+            "Uçsuz bucaksız manzara karşı saatlerce konuşacağımız o huzur..."
         )
-    elif rota == "Kleopatra Plajı Sahil Yürüyüşü":
+    elif rota == "Sonsuzluk Sahil Yürüyüşü":
         st.write(
-            "Kumların üstünde ayak izlerimiz kalırken, dalgaların sesine karışan"
-            " gülüşmelerimiz..."
+            "Yürürken dalgaların sesine karışan gülüşmelerimiz..."
         )
-    elif rota == "Kızılkule ve Liman Gezisi":
+    elif rota == "Tarihi Sokaklar ve Liman Gezisi":
         st.write(
-            "Akşam liman ışıkları yanarken el ele yapacağımız o nostaljik yürüyüş..."
+            "Işıklar yanarken el ele yapacağımız o nostaljik yürüyüş..."
         )
-    elif rota == "Dim Çayı Serinliği":
+    elif rota == "Doğanın Kalbinde Huzur":
         st.write(
-            "Yaz sıcağında suyun sesi ve doğanın kalbinde baş başa geçireceğimiz sakin"
+            "Suyun sesi ve doğanın kalbinde baş başa geçireceğimiz sakin"
             " saatler..."
         )
 
@@ -462,9 +489,9 @@ if st.session_state.giris_yapildi:
     st.markdown("---")
     st.markdown(
         """
-    <div style="text-align: center; color: #ffb74d; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,110,64,0.2);">
+    <div style="text-align: center; color: #d1c4e9; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(179,136,255,0.2);">
     <b>İyi ki varsın sevgilim. Seni çok seviyorum.</b><br>
-    <i>- Senin Tarzınla, Benim Elimden...</i>
+    <i>- Sonsuzluğun Başlangıcından...</i>
     </div>
     """,
         unsafe_allow_html=True,
