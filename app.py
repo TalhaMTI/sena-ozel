@@ -144,7 +144,7 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası (Duman - Senden Daha Güzel güncellendi)
+# Şarkı Listesi Hafızası
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         ("İrem Derici - Aşkımız Olay Olacak", "Tam hayallerimiz gibisin, aşkımız olay olacak! ✨"),
@@ -153,13 +153,13 @@ if "sarki_listesi" not in st.session_state:
         ("Yalın - Ki Sen", "En Özel Hissiyatlar 🌙"),
     ]
 
-# Giriş Ekranı
+# Giriş Ekranı (Güncellenmiş Başlık ile)
 if not st.session_state.giris_yapildi:
     st.markdown(
         """
         <div class="welcome-container">
             <div class="heart-icon">❤️</div>
-            <h2 style="margin-bottom: 5px;">Alanya'nın Gizli Sığınağı</h2>
+            <h2 style="margin-bottom: 5px;">Sonsuzluğun Başlangıcı ✨</h2>
             <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Bu dijital dünya sadece ikimiz için kuruldu.</p>
     """,
         unsafe_allow_html=True,
