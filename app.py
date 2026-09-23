@@ -146,23 +146,23 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# En Son Seçtiğimiz Şarkılar Hafızası (Neşet Ertaş ve Sagopa Kajmer ile güncellendi)
+# Duman, Yalın ve İrem Derici Şarkılarıyla Güncellenen Hafıza
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         (
-            "Neşet Ertaş - Neredesin Sen",
-            "Gönül Dağımız, derin bir esinti... 🌿",
-            "https://open.spotify.com/search/Neşet%20Ertaş%20Neredesin%20Sen",
+            "Duman - Seni Kendime Sakladım",
+            "Kalbinin en gizli köşesi... 🎸",
+            "https://open.spotify.com/search/Duman%20Seni%20Kendime%20Sakladım",
         ),
         (
-            "Sagopa Kajmer - Galiba",
-            "Gece yürüyüşlerinin vazgeçilmezi 🌙",
-            "https://open.spotify.com/search/Sagopa%20Kajmer%20Galiba",
+            "Yalın - Ki Sen",
+            "Ruhumuza dokunan o narince his ✨",
+            "https://open.spotify.com/search/Yalın%20Ki%20Sen",
         ),
         (
-            "Kıraç - Endamın Yeter",
-            "Bizim Şarkımız ✨",
-            "https://open.spotify.com/search/Kıraç%20Endamın%20Yeter",
+            "İrem Derici - Kalbimin Tek Sahibine",
+            "İkimizin en tatlı anı 💞",
+            "https://open.spotify.com/search/İrem%20Derici%20Kalbimin%20Tek%20Sahibine",
         ),
     ]
 
@@ -384,7 +384,7 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div class="universe-card">
-    Burası ikimizin müzik arşivimiz. En sevdiğimiz Neşet Ertaş ve Sagopa Kajmer ezgileriyle listemiz burada! Dilediğin zaman yeni bir şarkı daha ekleyebiliriz 💖
+    Burası ikimizin müzik arşivimiz. Duman, Yalın ve İrem Derici ezgileriyle listemiz burada! Dilediğin zaman yeni bir şarkı daha ekleyebiliriz 💖
     </div>
     """,
         unsafe_allow_html=True,
@@ -397,7 +397,7 @@ if st.session_state.giris_yapildi:
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
     yeni_sarki = st.text_input(
         "Şarkı Adı ve Sanatçı:",
-        placeholder="Örn: Neşet Ertaş - Gönül Dağı",
+        placeholder="Örn: Yalın - Her Şey Sensin",
     )
     yeni_not = st.text_input(
         "Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Ruhumuzu dinlendiren..."
