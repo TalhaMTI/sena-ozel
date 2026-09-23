@@ -145,6 +145,14 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
   st.session_state.giris_yapildi = False
 
+# Şarkı Listesi Hafızası (Sena veya Sen ekleme yaptıkça burada güncellenir)
+if "sarki_listesi" not in st.session_state:
+  st.session_state.sarki_listesi = [
+      ("Kıraç - Endamın Yeter", "Bizim Şarkımız ✨"),
+      ("Neşet Ertaş - Yalan Dünya", "Anadolu Esintisi 🌿"),
+      ("Sagopa Kajmer - Galiba", "Gece Yürüyüşleri 🌙"),
+  ]
+
 # Giriş Ekranı
 if not st.session_state.giris_yapildi:
   st.markdown(
@@ -326,7 +334,7 @@ if st.session_state.giris_yapildi:
     else:
       st.info("📷 Klasöre 'fotograf2.jpg' ekle")
 
-  # --- YENİ EKLENEN 1: ORTAK YAPILACAKLAR LİSTESİ (KONYA & ALANYA) ---
+  # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ (KONYA & ALANYA) ---
   st.markdown("---")
   st.header("🎯 Birlikte Yapacaklarımız")
   st.write(
@@ -335,7 +343,6 @@ if st.session_state.giris_yapildi:
   )
 
   bucket_list = [
-      # Konya Anıları
       (
           "Karatay Şehir Parkı'nda gölet kenarındaki kamelyalarda oturup baş"
           " başa çay içmek 🌳"
@@ -348,7 +355,6 @@ if st.session_state.giris_yapildi:
           "Karatay'da yöresel lezzetlerin yapıldığı nezih bir esnaf"
           " lokantasında veya restoranda baş başa yemek yemek 🍽️"
       ),
-      # Alanya Anıları
       (
           "Alanya Kalesi surlarında gün batımına karşı kahve içip manzarayı"
           " izlemek 🏰"
@@ -363,22 +369,36 @@ if st.session_state.giris_yapildi:
   for item in bucket_list:
     st.checkbox(item, value=False)
 
-  # --- YENİ EKLENEN 2: BİZİM FİLMLERİMİZ VE ŞARKILARIMIZ KÖŞESİ ---
+  # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ VE SENA'NIN EKLEME KUTUSU ---
   st.markdown("---")
-  st.header("🎬 Bizim Film & Dizi Köşemiz")
+  st.header("🎵 Geleceğin Şarkı Listesi & Ortak Nota")
   st.markdown(
       """
     <div class="alanya-card">
-    <b>Birlikte İzlediklerimiz / Önerilerimiz:</b><br><br>
-    🍿 <b>Özel Film/Dizi Önerisi:</b> Beraber izlerken en çok keyif aldığımız, repliklerini ezberlediğimiz anların anısına...<br>
-    🌙 <b>Gecenin Şarkısı:</b> Sözleri kalbimize dokunan, her duyduğumuzda birbirimizi hatırlatan melodiler.<br><br>
-    <i>"Bazı filmler ve şarkılar vardır; sadece izlenmez veya dinlenmez, anılarıyla yaşanır."</i>
+    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖
     </div>
     """,
       unsafe_allow_html=True,
   )
 
-  # --- 5. BÖLÜM: ONAYLANAN ÖZEL NOT ---
+  # Mevcut şarkıları listele
+  for sarki, aciklama in st.session_state.sarki_listesi:
+    st.markdown(f"🎧 **{sarki}** — *{aciklama}*")
+
+  st.markdown("---")
+  st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
+  yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı:", placeholder="Örn: Sezen Aksu - Beni Unutma")
+  yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Arabada dinlemelik...")
+
+  if st.button("Şarkıyı Listeye Ekle 🎶"):
+    if yeni_sarki:
+      st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız"))
+      st.success(f"Harika! '{yeni_sarki}' başarıyla listemize eklendi! 🎉")
+      st.rerun()
+    else:
+      st.warning("Lütfen eklemek istediğin şarkı adını boş bırakma sevgilim.")
+
+  # --- 7. BÖLÜM: ONAYLANAN ÖZEL NOT ---
   st.markdown("---")
   st.header("✨ Kalbimden Dökülenler")
   st.markdown(
@@ -392,7 +412,7 @@ if st.session_state.giris_yapildi:
       unsafe_allow_html=True,
   )
 
-  # --- 6. BÖLÜM: ALANYA ROTALARIMIZ ---
+  # --- 8. BÖLÜM: ALANYA ROTALARIMIZ ---
   st.markdown("---")
   st.header("🗺️ Alanya'da Bizim Rotalarımız")
 
@@ -427,7 +447,7 @@ if st.session_state.giris_yapildi:
         " saatler..."
     )
 
-  # --- 7. SON BÖLÜM ---
+  # --- 9. SON BÖLÜM ---
   st.markdown("---")
   st.markdown(
       """
