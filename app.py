@@ -146,13 +146,13 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Duman, Yalın ve İrem Derici Şarkılarıyla Güncellenen Hafıza
+# Duman - Senden Daha Güzel ile Güncellenen Şarkı Listesi
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         (
-            "Duman - Seni Kendime Sakladım",
-            "Kalbinin en gizli köşesi... 🎸",
-            "https://open.spotify.com/search/Duman%20Seni%20Kendime%20Sakladım",
+            "Duman - Senden Daha Güzel",
+            "Senden daha güzel kim var ki... 🎸",
+            "https://open.spotify.com/search/Duman%20Senden%20Daha%20Güzel",
         ),
         (
             "Yalın - Ki Sen",
@@ -384,14 +384,20 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div class="universe-card">
-    Burası ikimizin müzik arşivimiz. Duman, Yalın ve İrem Derici ezgileriyle listemiz burada! Dilediğin zaman yeni bir şarkı daha ekleyebiliriz 💖
+    Burası ikimizin müzik arşivimiz. Şarkıların üzerine tıklayarak doğrudan Spotify'da çalmaya başlayabilirsin 💖
     </div>
     """,
         unsafe_allow_html=True,
     )
 
     for sarki, aciklama, spotify_link in st.session_state.sarki_listesi:
-        st.markdown(f"🎧 **[{sarki}]({spotify_link})** — *{aciklama}*")
+        # Şarkılara doğrudan tıklanıp yeni sekmede (Spotify'da) açılması için HTML link yapısı
+        st.markdown(
+            f"🎧 <a href='{spotify_link}' target='_blank'"
+            " style='color: #ffb74d; text-decoration: none; font-weight: bold;'>"
+            f"{sarki}</a> — <em>{aciklama}</em>",
+            unsafe_allow_html=True,
+        )
 
     st.markdown("---")
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
