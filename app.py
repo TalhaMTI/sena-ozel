@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS (Belirginleştirilmiş Etiketler)
+# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS (Tüm Etiketler Belirginleştirildi)
 st.markdown(
     """
     <style>
@@ -51,8 +51,8 @@ st.markdown(
         font-size: 18px;
         padding: 12px;
     }
-    /* Girdi etiketlerini çok daha belirgin ve şık yaptık */
-    .stTextInput label {
+    /* Tüm input ve select etiketlerini çok daha belirgin yaptık */
+    .stTextInput label, .stSelectbox label {
         color: #ffb74d !important;
         font-weight: 600 !important;
         font-size: 16px !important;
@@ -405,7 +405,6 @@ if st.session_state.giris_yapildi:
     st.markdown("---")
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
 
-    # Örnek metinler tamamen kaldırıldı, etiketler belirginleştirildi
     yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı", placeholder="")
     yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not", placeholder="")
 
@@ -456,7 +455,7 @@ if st.session_state.giris_yapildi:
     st.header("🗺️ Bizim Rotalarımız")
 
     rota = st.selectbox(
-        "Birlikte kaybolmak istediğimiz noktayı seç:",
+        "Birlikte kaybolmak istediğimiz noktayı seç",
         [
             "Seçiniz...",
             "Tarihi Surlar ve Gün Batımı",
