@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Tasarım ve Kalp Geçiş Animasyonu İçin CSS/JS
+# Tasarım ve Kalp Animasyonu İçin CSS/JS
 st.markdown(
     """
     <style>
@@ -38,6 +38,39 @@ st.markdown(
         50% { transform: scale(1.1); }
         100% { transform: scale(1); }
     }
+    
+    /* Ekranda Uçuşan Kalpler Efekti */
+    .floating-hearts-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 99999;
+    }
+    .floating-heart-item {
+        position: absolute;
+        bottom: -50px;
+        font-size: 32px;
+        animation: floatUpAnimation 4s ease-in-out infinite;
+        opacity: 0.95;
+    }
+    @keyframes floatUpAnimation {
+        0% {
+            transform: translateY(0) scale(0.5) rotate(0deg);
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.85;
+        }
+        100% {
+            transform: translateY(-110vh) scale(1.4) rotate(25deg);
+            opacity: 0;
+        }
+    }
+
     .stTextInput > label {
         color: #ffb74d !important;
         font-weight: 600 !important;
@@ -174,7 +207,7 @@ if not st.session_state.giris_yapildi:
         "", type="password", placeholder="", label_visibility="collapsed"
     )
 
-    st.markdown("</div>", unsafe_allow_html=True,)
+    st.markdown("</div>", unsafe_allow_html=True)
 
     if sifre:
         if sifre == DOGRU_SIFRE:
@@ -195,55 +228,17 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
     
-    # Şifre girildikten sonra tetiklenen TAM KALP ŞEKLİNDE romantik geçiş efekti (Canvas Confetti SVG Kalp Entegrasyonu)
+    # Şifre girildikten sonra ekranda uçuşan kalpler geçiş efekti (HTML/CSS Component)
     components.html("""
-        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-        <script>
-            // SVG Kalp Şekli Tanımı
-            const scalar = 2;
-            const heartShape = confetti.shapeFromPath({
-                path: 'M167 72c19,-36 71,-41 97,0c23,37 0,91 -97,143c-97,-52 -120,-106 -97,-143c26,-41 78,-36 97,0z'
-            });
-
-            function fireRomanticHearts() {
-                let duration = 3.5 * 1000;
-                let animationEnd = Date.now() + duration;
-                let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 99999 };
-
-                function randomInRange(min, max) {
-                    return Math.random() * (max - min) + min;
-                }
-
-                let interval = setInterval(function() {
-                    let timeLeft = animationEnd - Date.now();
-
-                    if (timeLeft <= 0) {
-                        return clearInterval(interval);
-                    }
-
-                    let particleCount = 50 * (timeLeft / duration);
-                    
-                    // Kalp yağmuru patlamaları
-                    confetti(Object.assign({}, defaults, {
-                        particleCount,
-                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
-                        shapes: [heartShape],
-                        scalar: scalar,
-                        colors: ['#ff0000', '#ff69b4', '#ff1493', '#ff4081', '#ff80ab']
-                    }));
-                    confetti(Object.assign({}, defaults, {
-                        particleCount,
-                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
-                        shapes: [heartShape],
-                        scalar: scalar,
-                        colors: ['#ff0000', '#ff69b4', '#ff1493', '#ff4081', '#ff80ab']
-                    }));
-                }, 250);
-            }
-
-            // Sayfa açıldığı an çalıştır
-            fireRomanticHearts();
-        </script>
+        <div class="floating-hearts-overlay">
+            <div class="floating-heart-item" style="left: 8%; animation-duration: 3.2s; animation-delay: 0s;">❤️</div>
+            <div class="floating-heart-item" style="left: 22%; animation-duration: 4.1s; animation-delay: 0.3s;">💖</div>
+            <div class="floating-heart-item" style="left: 38%; animation-duration: 3.5s; animation-delay: 0.1s;">❤️</div>
+            <div class="floating-heart-item" style="left: 52%; animation-duration: 4.4s; animation-delay: 0.6s;">🤍</div>
+            <div class="floating-heart-item" style="left: 68%; animation-duration: 3.7s; animation-delay: 0.2s;">💖</div>
+            <div class="floating-heart-item" style="left: 82%; animation-duration: 4.0s; animation-delay: 0.5s;">❤️</div>
+            <div class="floating-heart-item" style="left: 92%; animation-duration: 3.4s; animation-delay: 0.4s;">💞</div>
+        </div>
     """, height=0)
 
     # Türkiye Saati Baz Alınarak Ortak Zaman
