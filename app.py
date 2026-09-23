@@ -181,7 +181,7 @@ if not st.session_state.giris_yapildi:
 if st.session_state.giris_yapildi:
     st.markdown('<div class="content-container">', unsafe_allow_html=True)
 
-    # Daha albenili, dikkat çekici karşılama bandı
+    # Karşılama bandı
     st.markdown(
         """
         <div class="welcome-banner">
@@ -192,7 +192,7 @@ if st.session_state.giris_yapildi:
     )
     st.balloons()
 
-    # Ortak Zaman Hesaplama için Türkiye Saati
+    # Türkiye Saati Baz Alınarak Ortak Zaman
     simdi = datetime.utcnow() + timedelta(hours=3)
 
     # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI ---
@@ -221,7 +221,7 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
 
-    # --- 1.1 BÖLÜM: DOĞUM GÜNÜ SAYAÇLARI ---
+    # --- DOĞUM GÜNÜ SAYAÇLARI ---
     st.markdown("---")
     st.header("🎂 Heyecanla Beklenen Günler")
 
@@ -325,6 +325,40 @@ if st.session_state.giris_yapildi:
         st.image("fotograf2.jpg", use_container_width=True)
       else:
         st.info("📷 Klasöre 'fotograf2.jpg' ekle")
+
+    # --- YENİ EKLENEN 1: ORTAK BUCKET LIST (YAPILACAKLAR LİSTESİ) ---
+    st.markdown("---")
+    st.header("🎯 Birlikte Yapacaklarımız (Bucket List)")
+    st.write(
+        "Gelecekte hayalini kurduğumuz ve birlikte gerçekleştireceğimiz"
+        " anlar..."
+    )
+
+    bucket_list = [
+        "Alanya Kalesi surlarında gün batımına karşı kahve içmek ☕",
+        "Kleopatra Plajı'nda gün batımında el ele yürümek 🌅",
+        "Baş başa sakin bir kamp kaçamağı yapmak ⛺",
+        "İkimizin seçeceği yeni bir şehre birlikte seyahat etmek 🚆",
+        "Gece yarısı sahil kenarında dalga sesini dinleyerek şarkı söylemek 🎶",
+    ]
+
+    for item in bucket_list:
+      st.checkbox(item, value=False)
+
+    # --- YENİ EKLENEN 2: BİZİM FİLMLERİMİZ VE ŞARKILARIMIZ KÖŞESİ ---
+    st.markdown("---")
+    st.header("🎬 Bizim Film & Dizi Köşemiz")
+    st.markdown(
+        """
+    <div class="alanya-card">
+    <b>Birlikte İzlediklerimiz / Önerilerimiz:</b><br><br>
+    🍿 <b>Özel Film/Dizi Önerisi:</b> Beraber izlerken en çok keyif aldığımız, repliklerini ezberlediğimiz anların anısına...<br>
+    🌙 <b>Gecenin Şarkısı:</b> Sözleri kalbimize dokunan, her duyduğumuzda birbirimizi hatırlatan melodiler.<br><br>
+    <i>"Bazı filmler ve şarkılar vardır; sadece izlenmez veya dinlenmez, anılarıyla yaşanır."</i>
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
 
     # --- 5. BÖLÜM: ONAYLANAN ÖZEL NOT ---
     st.markdown("---")
