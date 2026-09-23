@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Tasarım ve Boş Placeholder Ayarları
+# Tasarım, Kalp Animasyonları ve Boş Placeholder Ayarları
 st.markdown(
     """
     <style>
@@ -37,6 +37,35 @@ st.markdown(
         0% { transform: scale(1); }
         50% { transform: scale(1.1); }
         100% { transform: scale(1); }
+    }
+    
+    /* Uçuşan Kalpler Animasyonu */
+    .floating-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 9999;
+    }
+    .floating-heart {
+        position: absolute;
+        bottom: -20px;
+        font-size: 24px;
+        animation: floatUp 4s ease-in infinite;
+        opacity: 0.8;
+    }
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) scale(0.8);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) scale(1.4);
+            opacity: 0;
+        }
     }
     
     .stTextInput > label {
@@ -153,7 +182,7 @@ if "sarki_listesi" not in st.session_state:
         ("Yalın - Ki Sen", "En Özel Hissiyatlar 🌙"),
     ]
 
-# Giriş Ekranı (Güncellenmiş Başlık ile)
+# Giriş Ekranı
 if not st.session_state.giris_yapildi:
     st.markdown(
         """
@@ -183,7 +212,7 @@ if not st.session_state.giris_yapildi:
             st.session_state.giris_yapildi = True
             st.rerun()
         else:
-            st.error("Şifre yanlış sevgilim, ikimiz için özel olan o tarihi dene :)")
+            st.error("Şifre yanlış, ikimiz için özel olan o tarihi dene :)")
 
 # İçerik Ekranı
 if st.session_state.giris_yapildi:
@@ -191,12 +220,23 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
         <div class="welcome-banner">
-            ✨ Kapı aralandı... Hoş geldin sevgilim! 💞
+            ✨ Kapı aralandı... Hoş geldin! 💞
         </div>
     """,
         unsafe_allow_html=True,
     )
-    st.balloons()
+    
+    # Balonlar yerine uçuşan kalpler efekti
+    components.html("""
+        <div class="floating-hearts">
+            <div class="floating-heart" style="left: 10%; animation-duration: 3.5s; animation-delay: 0s;">❤️</div>
+            <div class="floating-heart" style="left: 25%; animation-duration: 4.2s; animation-delay: 0.5s;">💖</div>
+            <div class="floating-heart" style="left: 40%; animation-duration: 3.8s; animation-delay: 0.2s;">❤️</div>
+            <div class="floating-heart" style="left: 55%; animation-duration: 4.5s; animation-delay: 0.8s;">🤍</div>
+            <div class="floating-heart" style="left: 70%; animation-duration: 3.6s; animation-delay: 0.4s;">💖</div>
+            <div class="floating-heart" style="left: 85%; animation-duration: 4.0s; animation-delay: 0.6s;">❤️</div>
+        </div>
+    """, height=0)
 
     # Türkiye Saati Baz Alınarak Ortak Zaman
     simdi = datetime.utcnow() + timedelta(hours=3)
@@ -305,7 +345,7 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div class="alanya-card">
-    Alanya Kalesi'nin surlarından denize bakarken düşündüm de; bu Akdeniz ne kadar derin ve uçsuz bucaksız olursa olsun, benim gözümde senin bakışının derinliğinin yanında sadece sığ bir su damlası kalır. 
+    Alanya Kalesi'nin surlarından denize bakarken düşündüm de; bu Akdeniz ne kadar derin ve uçsuz bucaksız olursa olsun, senin gözümde senin bakışının derinliğinin yanında sadece sığ bir su damlası kalır. 
     Şehrin bütün ışıkları sönse, Kızılkule'nin feneri bile sönük kalsa, senin o gülüşün ömrümün her köşesini aydınlatmaya yeter. 
     Bu site; dünyanın gürültüsünden uzakta, dalga seslerinin arasına sakladığımız, sadece ruhunun huzur bulacağı bizim dijital limanımız...
     </div>
@@ -365,13 +405,13 @@ if st.session_state.giris_yapildi:
     for item in bucket_list:
         st.checkbox(item, value=False)
 
-    # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ VE SENA'NIN EKLEME KUTUSU ---
+    # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ VE EKLEME KUTUSU ---
     st.markdown("---")
     st.header("🎵 Geleceğin Şarkı Listesi & Ortak Nota")
     st.markdown(
         """
     <div class="alanya-card">
-    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 <br>
+    Burası ikimizin müzik arşivimiz. Dilediğiniz zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 <br>
     <i>(Şarkıların üstüne tıklayarak doğrudan Spotify uygulamasında açabilirsin!)</i>
     </div>
     """,
@@ -401,9 +441,9 @@ if st.session_state.giris_yapildi:
             
             st.rerun()
         else:
-            st.warning("Lütfen eklemek istediğin şarkı adını boş bırakma sevgilim.")
+            st.warning("Lütfen eklemek istediğin şarkı adını boş bırakma.")
 
-    # --- 7. BÖLÜM: ONAYLANAN ÖZEL NOT ---
+    # --- 7. BÖLÜM: ÖZEL NOT ---
     st.markdown("---")
     st.header("✨ Kalbimden Dökülenler")
     st.markdown(
@@ -411,7 +451,7 @@ if st.session_state.giris_yapildi:
     <div class="alanya-card">
     Hayatta her şeyin bir sıradanlığı varken, seninle her an bambaşka bir hikayeye dönüşüyor. İlk gördüğüm andan beri bende bıraktığın o özel his, zaman geçtikçe çok daha derin ve anlamlı bir yere ulaştı.<br><br>
     Bazen sokaklarda yürüyken, bazen arabada yan yana oturup sessizce yolu izlerken, bazen de sadece gözlerinin içine bakarken fark ediyorum ki; hayatın koşturmacası içinde en huzur bulduğum yer senin yanın. Dışarıdan bakıldığında belki kendi halinde, sert görünen biriyim ama konu sen olunca içimdeki o yumuşak ve korumacı tarafı sadece sen biliyorsun.<br><br>
-    İyi ki yollarımız kesişti, iyi ki hayatımdasın. Seni çok seviyorum.
+    İyi ki yollarımız kesişti, iyi ki hayatımdasın.
     </div>
     """,
         unsafe_allow_html=True,
@@ -457,7 +497,7 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div style="text-align: center; color: #ffb74d; font-size: 16px; margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 15px; border: 1px solid rgba(255,110,64,0.2);">
-    <b>İyi ki varsın sevgilim. Seni çok seviyorum.</b><br>
+    <b>İyi ki varsın.</b><br>
     <i>- Senin Tarzınla, Benim Elimden...</i>
     </div>
     """,
