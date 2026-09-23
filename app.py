@@ -103,6 +103,24 @@ st.markdown(
         margin-bottom: 25px;
         box-shadow: 0 10px 30px rgba(255, 110, 64, 0.15);
     }
+    .birthday-box-sena {
+        text-align: center;
+        background: linear-gradient(135deg, rgba(233, 30, 99, 0.12), rgba(156, 39, 176, 0.05));
+        border: 2px solid rgba(233, 30, 99, 0.4);
+        padding: 25px;
+        border-radius: 22px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
+    }
+    .birthday-box-talha {
+        text-align: center;
+        background: linear-gradient(135deg, rgba(33, 150, 243, 0.12), rgba(0, 188, 212, 0.05));
+        border: 2px solid rgba(33, 150, 243, 0.4);
+        padding: 25px;
+        border-radius: 22px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);
+    }
     .welcome-banner {
         background: linear-gradient(90deg, rgba(255,110,64,0.15), rgba(255,183,77,0.15));
         padding: 15px;
@@ -125,201 +143,248 @@ DOGRU_SIFRE = "19/09/2026"
 
 # Oturum Durumu Kontrolü
 if "giris_yapildi" not in st.session_state:
-  st.session_state.giris_yapildi = False
+    st.session_state.giris_yapildi = False
 
 # Giriş Ekranı
 if not st.session_state.giris_yapildi:
-  st.markdown(
-      """
+    st.markdown(
+        """
         <div class="welcome-container">
             <div class="heart-icon">❤️</div>
             <h2 style="margin-bottom: 5px;">Alanya'nın Gizli Sığınağı</h2>
             <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Bu dijital dünya sadece ikimiz için kuruldu.</p>
     """,
-      unsafe_allow_html=True,
-  )
+        unsafe_allow_html=True,
+    )
 
-  st.markdown(
-      '<p style="color: #ffb74d; font-size: 13px; font-weight: 500;'
-      ' margin-bottom: 5px; text-align: center;">🔒 İkimiz için de en özel'
-      " gün...</p>",
-      unsafe_allow_html=True,
-  )
+    st.markdown(
+        '<p style="color: #ffb74d; font-size: 13px; font-weight: 500;'
+        ' margin-bottom: 5px; text-align: center;">🔒 İkimiz için de en özel'
+        " gün...</p>",
+        unsafe_allow_html=True,
+    )
 
-  sifre = st.text_input(
-      "", type="password", placeholder="", label_visibility="collapsed"
-  )
+    sifre = st.text_input(
+        "", type="password", placeholder="", label_visibility="collapsed"
+    )
 
-  st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
-  if sifre:
-    if sifre == DOGRU_SIFRE:
-      st.session_state.giris_yapildi = True
-      st.rerun()
-    else:
-      st.error("Şifre yanlış sevgilim, ikimiz için özel olan o tarihi dene :)")
+    if sifre:
+        if sifre == DOGRU_SIFRE:
+            st.session_state.giris_yapildi = True
+            st.rerun()
+        else:
+            st.error("Şifre yanlış sevgilim, ikimiz için özel olan o tarihi dene :)")
 
 # İçerik Ekranı
 if st.session_state.giris_yapildi:
-  st.markdown('<div class="content-container">', unsafe_allow_html=True)
+    st.markdown('<div class="content-container">', unsafe_allow_html=True)
 
-  # Daha albenili, dikkat çekici karşılama bandı
-  st.markdown(
-      """
+    # Daha albenili, dikkat çekici karşılama bandı
+    st.markdown(
+        """
         <div class="welcome-banner">
             ✨ Kapı aralandı... Hoş geldin sevgilim! 💞
         </div>
     """,
-      unsafe_allow_html=True,
-  )
-  st.balloons()
+        unsafe_allow_html=True,
+    )
+    st.balloons()
 
-  # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI (TR Saat Düzeltmeli) ---
-  st.markdown("---")
-  st.header("⏳ 💞 Bizim Zamanımız 💞")
+    # Ortak Zaman Hesaplama için Türkiye Saati
+    simdi = datetime.utcnow() + timedelta(hours=3)
 
-  baslangic_tarihi = datetime(2026, 9, 19, 15, 11, 0)
-  # Sunucu UTC saatine Türkiye saati (+3 saat) eklenerek senkronize edildi
-  simdi = datetime.utcnow() + timedelta(hours=3)
-  fark = simdi - baslangic_tarihi
+    # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI ---
+    st.markdown("---")
+    st.header("⏳ 💞 Bizim Zamanımız 💞")
 
-  toplam_saniye = int(fark.total_seconds())
-  if toplam_saniye < 0:
-    toplam_saniye = 0
+    baslangic_tarihi = datetime(2026, 9, 19, 15, 11, 0)
+    fark = simdi - baslangic_tarihi
 
-  gun = toplam_saniye // 86400
-  saat = (toplam_saniye % 86400) // 3600
-  dakika = (toplam_saniye % 3600) // 60
+    toplam_saniye = int(fark.total_seconds())
+    if toplam_saniye < 0:
+        toplam_saniye = 0
 
-  st.markdown(
-      f"""
+    gun = toplam_saniye // 86400
+    saat = (toplam_saniye % 86400) // 3600
+    dakika = (toplam_saniye % 3600) // 60
+
+    st.markdown(
+        f"""
     <div class="counter-box">
         <h3 style="color: #ffb74d; margin: 0; font-size: 20px;">Birlikte Geçen Her Anımız</h3>
         <p style="font-size: 32px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(255,110,64,0.5);">{gun} Gün, {saat} Saat, {dakika} Dakika</p>
         <p style="color: #ffd54f; font-size: 14px; margin: 0; font-weight: 500;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
     </div>
     """,
-      unsafe_allow_html=True,
-  )
-
-  # --- 2. BÖLÜM: MÜZİK ÇALAR ---
-  st.markdown("---")
-  st.header("🎶 Kıraç - Endamın Yeter")
-  st.write("Kulaklığını tak ve müziğin akışına bırak kendini...")
-
-  audio_path = "endaminyeter.mp3"
-  if os.path.exists(audio_path):
-    st.audio(audio_path, format="audio/mp3", autoplay=True)
-  else:
-    st.info(
-        "🎵 Şarkı çaları aktif etmek için 'endaminyeter.mp3' dosyasını proje"
-        " klasörüne ekleyebilirsin."
+        unsafe_allow_html=True,
     )
 
-  # --- 3. BÖLÜM: ALANYA KALESİ VE ANA GÖRSEL ---
-  st.markdown("---")
-  st.header("🏰 Alanya Kalesi'nden Akdeniz'e Bakış")
+    # --- 1.1 BÖLÜM: DOĞUM GÜNÜ SAYAÇLARI ---
+    st.markdown("---")
+    st.header("🎂 Heyecanla Beklenen Günler")
 
-  img_path = "alanya.jpg"
-  if os.path.exists(img_path):
-    st.image(
-        img_path,
-        caption="Kızılkule'nin gölgesinde Akdeniz mavisi...",
-        use_container_width=True,
-    )
-  else:
-    st.warning(
-        "⚠️ Lütfen Alanya fotoğrafını proje klasörüne 'alanya.jpg' adıyla"
-        " kaydet."
+    # Sena'nın Doğum Günü (19 Mayıs 2027)
+    sena_dg = datetime(2027, 5, 19, 0, 0, 0)
+    fark_sena = sena_dg - simdi
+    sena_saniye = int(fark_sena.total_seconds())
+    if sena_saniye < 0:
+        sena_saniye = 0
+    sena_gun = sena_saniye // 86400
+    sena_saat = (sena_saniye % 86400) // 3600
+    sena_dakika = (sena_saniye % 3600) // 60
+
+    st.markdown(
+        f"""
+    <div class="birthday-box-sena">
+        <h3 style="color: #ff80ab; margin: 0; font-size: 20px;">🌸 Sena'nın Doğum Gününe Kalan</h3>
+        <p style="font-size: 28px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(233,30,99,0.5);">{sena_gun} Gün, {sena_saat} Saat, {sena_dakika} Dakika</p>
+        <p style="color: #ff80ab; font-size: 14px; margin: 0; font-weight: 500;">19 Mayıs 2027 ✨</p>
+    </div>
+    """,
+        unsafe_allow_html=True,
     )
 
-  st.markdown(
-      """
+    # Talha'nın Doğum Günü (20 Şubat 2027)
+    talha_dg = datetime(2027, 2, 20, 0, 0, 0)
+    fark_talha = talha_dg - simdi
+    talha_saniye = int(fark_talha.total_seconds())
+    if talha_saniye < 0:
+        talha_saniye = 0
+    talha_gun = talha_saniye // 86400
+    talha_saat = (talha_saniye % 86400) // 3600
+    talha_dakika = (talha_saniye % 3600) // 60
+
+    st.markdown(
+        f"""
+    <div class="birthday-box-talha">
+        <h3 style="color: #4fc3f7; margin: 0; font-size: 20px;">🎉 Talha'nın Doğum Gününe Kalan</h3>
+        <p style="font-size: 28px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(33,150,243,0.5);">{talha_gun} Gün, {talha_saat} Saat, {talha_dakika} Dakika</p>
+        <p style="color: #4fc3f7; font-size: 14px; margin: 0; font-weight: 500;">20 Şubat 2027 🚀</p>
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
+
+    # --- 2. BÖLÜM: MÜZİK ÇALAR ---
+    st.markdown("---")
+    st.header("🎶 Kıraç - Endamın Yeter")
+    st.write("Kulaklığını tak ve müziğin akışına bırak kendini...")
+
+    audio_path = "endaminyeter.mp3"
+    if os.path.exists(audio_path):
+      st.audio(audio_path, format="audio/mp3", autoplay=True)
+    else:
+      st.info(
+          "🎵 Şarkı çaları aktif etmek için 'endaminyeter.mp3' dosyasını proje"
+          " klasörüne ekleyebilirsin."
+      )
+
+    # --- 3. BÖLÜM: ALANYA KALESİ VE ANA GÖRSEL ---
+    st.markdown("---")
+    st.header("🏰 Alanya Kalesi'nden Akdeniz'e Bakış")
+
+    img_path = "alanya.jpg"
+    if os.path.exists(img_path):
+      st.image(
+          img_path,
+          caption="Kızılkule'nin gölgesinde Akdeniz mavisi...",
+          use_container_width=True,
+      )
+    else:
+      st.warning(
+          "⚠️ Lütfen Alanya fotoğrafını proje klasörüne 'alanya.jpg' adıyla"
+          " kaydet."
+      )
+
+    st.markdown(
+        """
     <div class="alanya-card">
     Alanya Kalesi'nin surlarından denize bakarken düşündüm de; bu Akdeniz ne kadar derin ve uçsuz bucaksız olursa olsun, benim gözümde senin bakışının derinliğinin yanında sadece sığ bir su damlası kalır. 
     Şehrin bütün ışıkları sönse, Kızılkule'nin feneri bile sönük kalsa, senin o gülüşün ömrümün her köşesini aydınlatmaya yeter. 
     Bu site; dünyanın gürültüsünden uzakta, dalga seslerinin arasına sakladığımız, sadece ruhunun huzur bulacağı bizim dijital limanımız...
     </div>
     """,
-      unsafe_allow_html=True,
-  )
+        unsafe_allow_html=True,
+    )
 
-  # --- 4. BÖLÜM: FOTOĞRAF GALERİSİ ---
-  st.markdown("---")
-  st.header("📸 Anı Albümümüz")
-  st.write("Yanyana durduğumuz, güldüğümüz o özel kareler...")
+    # --- 4. BÖLÜM: FOTOĞRAF GALERİSİ ---
+    st.markdown("---")
+    st.header("📸 Anı Albümümüz")
+    st.write("Yanyana durduğumuz, güldüğümüz o özel kareler...")
 
-  col1, col2 = st.columns(2)
-  with col1:
-    if os.path.exists("fotograf1.jpg"):
-      st.image("fotograf1.jpg", use_container_width=True)
-    else:
-      st.info("📷 Klasöre 'fotograf1.jpg' ekle")
-  with col2:
-    if os.path.exists("fotograf2.jpg"):
-      st.image("fotograf2.jpg", use_container_width=True)
-    else:
-      st.info("📷 Klasöre 'fotograf2.jpg' ekle")
+    col1, col2 = st.columns(2)
+    with col1:
+      if os.path.exists("fotograf1.jpg"):
+        st.image("fotograf1.jpg", use_container_width=True)
+      else:
+        st.info("📷 Klasöre 'fotograf1.jpg' ekle")
+    with col2:
+      if os.path.exists("fotograf2.jpg"):
+        st.image("fotograf2.jpg", use_container_width=True)
+      else:
+        st.info("📷 Klasöre 'fotograf2.jpg' ekle")
 
-  # --- 5. BÖLÜM: ONAYLANAN ÖZEL NOT ---
-  st.markdown("---")
-  st.header("✨ Kalbimden Dökülenler")
-  st.markdown(
-      """
+    # --- 5. BÖLÜM: ONAYLANAN ÖZEL NOT ---
+    st.markdown("---")
+    st.header("✨ Kalbimden Dökülenler")
+    st.markdown(
+        """
     <div class="alanya-card">
     Hayatta her şeyin bir sıradanlığı varken, seninle her an bambaşka bir hikayeye dönüşüyor. İlk gördüğüm andan beri bende bıraktığın o özel his, zaman geçtikçe çok daha derin ve anlamlı bir yere ulaştı.<br><br>
     Bazen sokaklarda yürürken, bazen arabada yan yana oturup sessizce yolu izlerken, bazen de sadece gözlerinin içine bakarken fark ediyorum ki; hayatın koşturmacası içinde en huzur bulduğum yer senin yanın. Dışarıdan bakıldığında belki kendi halinde, sert görünen biriyim ama konu sen olunca içimdeki o yumuşak ve korumacı tarafı sadece sen biliyorsun.<br><br>
     İyi ki yollarımız kesişti, iyi ki hayatımdasın. Seni çok seviyorum.
     </div>
     """,
-      unsafe_allow_html=True,
-  )
-
-  # --- 6. BÖLÜM: ALANYA ROTALARIMIZ ---
-  st.markdown("---")
-  st.header("🗺️ Alanya'da Bizim Rotalarımız")
-
-  rota = st.selectbox(
-      "Birlikte kaybolmak istediğimiz Alanya noktasını seç:",
-      [
-          "Seçiniz...",
-          "Alanya Kalesi Surları (Gün Batımı)",
-          "Kleopatra Plajı Sahil Yürüyüşü",
-          "Kızılkule ve Liman Gezisi",
-          "Dim Çayı Serinliği",
-      ],
-  )
-
-  if rota == "Alanya Kalesi Surları (Gün Batımı)":
-    st.write(
-        "Tarihi surların tepesinde, uçsuz bucaksız Akdeniz manzarasına karşı"
-        " saatlerce konuşacağımız o huzur..."
-    )
-  elif rota == "Kleopatra Plajı Sahil Yürüyüşü":
-    st.write(
-        "Kumların üstünde ayak izlerimiz kalırken, dalgaların sesine karışan"
-        " gülüşmelerimiz..."
-    )
-  elif rota == "Kızılkule ve Liman Gezisi":
-    st.write(
-        "Akşam liman ışıkları yanarken el ele yapacağımız o nostaljik yürüyüş..."
-    )
-  elif rota == "Dim Çayı Serinliği":
-    st.write(
-        "Yaz sıcağında suyun sesi ve doğanın kalbinde baş başa geçireceğimiz sakin"
-        " saatler..."
+        unsafe_allow_html=True,
     )
 
-  # --- 7. SON BÖLÜM ---
-  st.markdown("---")
-  st.markdown(
-      """
+    # --- 6. BÖLÜM: ALANYA ROTALARIMIZ ---
+    st.markdown("---")
+    st.header("🗺️ Alanya'da Bizim Rotalarımız")
+
+    rota = st.selectbox(
+        "Birlikte kaybolmak istediğimiz Alanya noktasını seç:",
+        [
+            "Seçiniz...",
+            "Alanya Kalesi Surları (Gün Batımı)",
+            "Kleopatra Plajı Sahil Yürüyüşü",
+            "Kızılkule ve Liman Gezisi",
+            "Dim Çayı Serinliği",
+        ],
+    )
+
+    if rota == "Alanya Kalesi Surları (Gün Batımı)":
+      st.write(
+          "Tarihi surların tepesinde, uçsuz bucaksız Akdeniz manzarasına karşı"
+          " saatlerce konuşacağımız o huzur..."
+      )
+    elif rota == "Kleopatra Plajı Sahil Yürüyüşü":
+      st.write(
+          "Kumların üstünde ayak izlerimiz kalırken, dalgaların sesine karışan"
+          " gülüşmelerimiz..."
+      )
+    elif rota == "Kızılkule ve Liman Gezisi":
+      st.write(
+          "Akşam liman ışıkları yanarken el ele yapacağımız o nostaljik yürüyüş..."
+      )
+    elif rota == "Dim Çayı Serinliği":
+      st.write(
+          "Yaz sıcağında suyun sesi ve doğanın kalbinde baş başa geçireceğimiz sakin"
+          " saatler..."
+      )
+
+    # --- 7. SON BÖLÜM ---
+    st.markdown("---")
+    st.markdown(
+        """
     <div style="text-align: center; color: #ffb74d; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,110,64,0.2);">
     <b>İyi ki varsın sevgilim. Seni çok seviyorum.</b><br>
     <i>- Senin Tarzınla, Benim Elimden...</i>
     </div>
     """,
-      unsafe_allow_html=True,
-  )
+        unsafe_allow_html=True,
+    )
 
-  st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
