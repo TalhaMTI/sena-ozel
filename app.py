@@ -144,13 +144,13 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası
+# Şarkı Listesi Hafızası (Yalın şarkıları eklendi)
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         ("İrem Derici - Aşkımız Olay Olacak", "Tam hayallerimiz gibisin, aşkımız olay olacak! ✨"),
         ("Kıraç - Endamın Yeter", "Bizim Şarkımız ✨"),
-        ("Neşet Ertaş - Yalan Dünya", "Anadolu Esintisi 🌿"),
-        ("Sagopa Kajmer - Galiba", "Gece Yürüyüşleri 🌙"),
+        ("Yalın - Meleklerin Sözü Var", "Romantik Akşamlar 🤍"),
+        ("Yalın - Ki Sen", "En Özel Hissiyatlar 🌙"),
     ]
 
 # Giriş Ekranı
