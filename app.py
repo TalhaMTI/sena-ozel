@@ -40,7 +40,7 @@ st.markdown(
     }
     
     /* Uçuşan Kalpler Animasyonu */
-    .floating-hearts {
+    .floating-hearts-container {
         position: fixed;
         top: 0;
         left: 0;
@@ -48,22 +48,25 @@ st.markdown(
         height: 100%;
         pointer-events: none;
         overflow: hidden;
-        z-index: 9999;
+        z-index: 99999;
     }
     .floating-heart {
         position: absolute;
-        bottom: -20px;
-        font-size: 24px;
-        animation: floatUp 4s ease-in infinite;
-        opacity: 0.8;
+        bottom: -50px;
+        font-size: 28px;
+        animation: floatUp 4s ease-in-out infinite;
+        opacity: 0.9;
     }
     @keyframes floatUp {
         0% {
-            transform: translateY(0) scale(0.8);
+            transform: translateY(0) scale(0.6) rotate(0deg);
             opacity: 1;
         }
+        50% {
+            opacity: 0.8;
+        }
         100% {
-            transform: translateY(-100vh) scale(1.4);
+            transform: translateY(-100vh) scale(1.4) rotate(20deg);
             opacity: 0;
         }
     }
@@ -226,9 +229,42 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
     
-    # Balonlar yerine uçuşan kalpler efekti
+    # Uçuşan Kalpler Efekti (Tam Entegre)
     components.html("""
-        <div class="floating-hearts">
+        <style>
+        .floating-hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 99999;
+            background: transparent;
+        }
+        .floating-heart {
+            position: absolute;
+            bottom: -50px;
+            font-size: 28px;
+            animation: floatUp 4s ease-in-out infinite;
+            opacity: 0.9;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.6) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.4) rotate(20deg);
+                opacity: 0;
+            }
+        }
+        </style>
+        <div class="floating-hearts-container">
             <div class="floating-heart" style="left: 10%; animation-duration: 3.5s; animation-delay: 0s;">❤️</div>
             <div class="floating-heart" style="left: 25%; animation-duration: 4.2s; animation-delay: 0.5s;">💖</div>
             <div class="floating-heart" style="left: 40%; animation-duration: 3.8s; animation-delay: 0.2s;">❤️</div>
@@ -236,7 +272,7 @@ if st.session_state.giris_yapildi:
             <div class="floating-heart" style="left: 70%; animation-duration: 3.6s; animation-delay: 0.4s;">💖</div>
             <div class="floating-heart" style="left: 85%; animation-duration: 4.0s; animation-delay: 0.6s;">❤️</div>
         </div>
-    """, height=0)
+    """, height=50)
 
     # Türkiye Saati Baz Alınarak Ortak Zaman
     simdi = datetime.utcnow() + timedelta(hours=3)
