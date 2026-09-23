@@ -144,11 +144,11 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası (Melekler Seni Bana Yazmış eklendi)
+# Şarkı Listesi Hafızası (Duman - Senden Daha Güzel güncellendi)
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         ("İrem Derici - Aşkımız Olay Olacak", "Tam hayallerimiz gibisin, aşkımız olay olacak! ✨"),
-        ("Kıraç - Endamın Yeter", "Bizim Şarkımız ✨"),
+        ("Duman - Senden Daha Güzel", "Senden Daha Güzeli mi Var? 🎸🔥"),
         ("Yalın - Melekler Seni Bana Yazmış", "Kalbimin En Güzel Köşesi 🤍"),
         ("Yalın - Ki Sen", "En Özel Hissiyatlar 🌙"),
     ]
