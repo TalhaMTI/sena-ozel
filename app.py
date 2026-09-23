@@ -326,15 +326,16 @@ if st.session_state.giris_yapildi:
     else:
       st.info("📷 Klasöre 'fotograf2.jpg' ekle")
 
-  # --- YENİ EKLENEN 1: ORTAK BUCKET LIST (YAPILACAKLAR LİSTESİ - KONYA) ---
+  # --- YENİ EKLENEN 1: ORTAK YAPILACAKLAR LİSTESİ (KONYA & ALANYA) ---
   st.markdown("---")
-  st.header("🎯 Birlikte Yapacaklarımız (Bucket List)")
+  st.header("🎯 Birlikte Yapacaklarımız")
   st.write(
       "Gelecekte hayalini kurduğumuz ve birlikte gerçekleştireceğimiz"
       " anlar..."
   )
 
   bucket_list = [
+      # Konya Anıları
       (
           "Karatay Şehir Parkı'nda gölet kenarındaki kamelyalarda oturup baş"
           " başa çay içmek 🌳"
@@ -347,6 +348,16 @@ if st.session_state.giris_yapildi:
           "Karatay'da yöresel lezzetlerin yapıldığı nezih bir esnaf"
           " lokantasında veya restoranda baş başa yemek yemek 🍽️"
       ),
+      # Alanya Anıları
+      (
+          "Alanya Kalesi surlarında gün batımına karşı kahve içip manzarayı"
+          " izlemek 🏰"
+      ),
+      (
+          "Kleopatra Plajı'nda dalga sesleri eşliğinde akşam yürüyüşü"
+          " yapmak 🌊"
+      ),
+      ("Dim Çayı'nın serin sularında baş başa huzurlu vakit geçirmek 🌿"),
   ]
 
   for item in bucket_list:
