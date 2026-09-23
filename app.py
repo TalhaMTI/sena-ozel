@@ -146,23 +146,23 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Duman - Senden Daha Güzel ile Güncellenen Şarkı Listesi
+# Spotify Uygulama Protokolüyle Güncellenen Şarkı Listesi
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         (
             "Duman - Senden Daha Güzel",
             "Senden daha güzel kim var ki... 🎸",
-            "https://open.spotify.com/search/Duman%20Senden%20Daha%20Güzel",
+            "spotify:search:Duman%20Senden%20Daha%20Güzel",
         ),
         (
             "Yalın - Ki Sen",
             "Ruhumuza dokunan o narince his ✨",
-            "https://open.spotify.com/search/Yalın%20Ki%20Sen",
+            "spotify:search:Yalın%20Ki%20Sen",
         ),
         (
             "İrem Derici - Kalbimin Tek Sahibine",
             "İkimizin en tatlı anı 💞",
-            "https://open.spotify.com/search/İrem%20Derici%20Kalbimin%20Tek%20Sahibine",
+            "spotify:search:İrem%20Derici%20Kalbimin%20Tek%20Sahibine",
         ),
     ]
 
@@ -384,16 +384,15 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div class="universe-card">
-    Burası ikimizin müzik arşivimiz. Şarkıların üzerine tıklayarak doğrudan Spotify'da çalmaya başlayabilirsin 💖
+    Burası ikimizin müzik arşivimiz. Şarkılara tıklayarak doğrudan Spotify uygulamasını açabilirsin 💖
     </div>
     """,
         unsafe_allow_html=True,
     )
 
     for sarki, aciklama, spotify_link in st.session_state.sarki_listesi:
-        # Şarkılara doğrudan tıklanıp yeni sekmede (Spotify'da) açılması için HTML link yapısı
         st.markdown(
-            f"🎧 <a href='{spotify_link}' target='_blank'"
+            f"🎧 <a href='{spotify_link}'"
             " style='color: #ffb74d; text-decoration: none; font-weight: bold;'>"
             f"{sarki}</a> — <em>{aciklama}</em>",
             unsafe_allow_html=True,
@@ -411,7 +410,7 @@ if st.session_state.giris_yapildi:
 
     if st.button("Şarkıyı Listeye Ekle ve Spotify'da Aç 🎶"):
         if yeni_sarki:
-            s_url = f"https://open.spotify.com/search/{yeni_sarki.replace(' ', '%20')}"
+            s_url = f"spotify:search:{yeni_sarki.replace(' ', '%20')}"
             st.session_state.sarki_listesi.append(
                 (
                     yeni_sarki,
@@ -421,13 +420,13 @@ if st.session_state.giris_yapildi:
             )
             st.success(
                 f"Harika! '{yeni_sarki}' başarıyla listemize eklendi ve"
-                " Spotify'da açılıyor! 🎉"
+                " Spotify uygulamasında açılıyor! 🎉"
             )
 
             components.html(
                 f"""
                 <script>
-                    window.open("{s_url}", "_blank");
+                    window.location.href = "{s_url}";
                 </script>
             """,
                 height=0,
