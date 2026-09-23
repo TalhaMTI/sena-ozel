@@ -48,9 +48,16 @@ st.markdown(
         border-radius: 14px !important;
         border: 2px solid #ff6e40 !important;
         text-align: center;
-        font-size: 20px;
-        letter-spacing: 2px;
+        font-size: 18px;
+        letter-spacing: 1px;
         padding: 12px;
+    }
+    /* Form etiketlerini çok daha belirgin, net ve okunabilir yapıyoruz */
+    .stTextInput > label {
+        color: #ffffff !important;
+        font-size: 16px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px !important;
     }
     .stButton>button {
         background: linear-gradient(45deg, #ff6e40, #ff9f43);
@@ -399,12 +406,11 @@ if st.session_state.giris_yapildi:
 
   st.markdown("---")
   st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
-  yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı:", placeholder="Örn: Sezen Aksu - Beni Unutma")
-  yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Arabada dinlemelik...")
+  yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı:", placeholder="")
+  yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not:", placeholder="")
 
   if st.button("Şarkıyı Listeye Ekle 🎶"):
     if yeni_sarki:
-      # Kullanıcının eklediği şarkı için otomatik arama linki oluşturulur
       sarki_link = f"https://www.youtube.com/results?search_query={yeni_sarki.replace(' ', '+')}"
       st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız", sarki_link))
       st.success(f"Harika! '{yeni_sarki}' başarıyla listemize eklendi! 🎉")
