@@ -8,19 +8,19 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Sonsuzluğun Başlangıcı Temalı Ultra Şık CSS
+# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS
 st.markdown(
     """
     <style>
     .stApp {
-        background: linear-gradient(135deg, #05050f 0%, #0d1224 40%, #1a102f 100%);
+        background: linear-gradient(135deg, #090d16 0%, #161f37 40%, #2a1b3d 100%);
         color: #f8fafc;
     }
     .welcome-container {
         background: rgba(255, 255, 255, 0.04);
         padding: 45px 30px;
         border-radius: 28px;
-        border: 1px solid rgba(138, 43, 226, 0.4);
+        border: 1px solid rgba(255, 110, 64, 0.4);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(15px);
         text-align: center;
@@ -34,27 +34,27 @@ st.markdown(
     }
     .heart-icon {
         font-size: 55px;
-        color: #b388ff;
+        color: #ff6e40;
         margin-bottom: 12px;
         animation: pulse 2s infinite;
     }
     @keyframes pulse {
-        0% { transform: scale(1); text-shadow: 0 0 10px rgba(179,136,255,0.4); }
-        50% { transform: scale(1.12); text-shadow: 0 0 25px rgba(179,136,255,0.8); }
-        100% { transform: scale(1); text-shadow: 0 0 10px rgba(179,136,255,0.4); }
+        0% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
+        50% { transform: scale(1.12); text-shadow: 0 0 25px rgba(255,110,64,0.8); }
+        100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
     }
     .stTextInput > div > div > input {
         background-color: rgba(15, 23, 42, 0.95) !important;
         color: #ffffff !important;
         border-radius: 14px !important;
-        border: 2px solid #b388ff !important;
+        border: 2px solid #ff6e40 !important;
         text-align: center;
         font-size: 20px;
         letter-spacing: 2px;
         padding: 12px;
     }
     .stButton>button {
-        background: linear-gradient(45deg, #7c4dff, #b388ff);
+        background: linear-gradient(45deg, #ff6e40, #ff9f43);
         color: white;
         border: none;
         border-radius: 14px;
@@ -62,16 +62,16 @@ st.markdown(
         font-weight: bold;
         font-size: 16px;
         width: 100%;
-        box-shadow: 0 4px 15px rgba(124, 77, 255, 0.4);
+        box-shadow: 0 4px 15px rgba(255, 110, 64, 0.4);
         transition: 0.3s;
         margin-top: 12px;
     }
     .stButton>button:hover {
-        background: linear-gradient(45deg, #651fff, #7c4dff);
-        box-shadow: 0 6px 20px rgba(124, 77, 255, 0.7);
+        background: linear-gradient(45deg, #ff5722, #ff8f00);
+        box-shadow: 0 6px 20px rgba(255, 110, 64, 0.7);
     }
     h1, h2, h3 {
-        color: #d1c4e9 !important;
+        color: #ffb74d !important;
         font-family: 'Helvetica Neue', sans-serif;
         letter-spacing: 0.5px;
     }
@@ -86,7 +86,7 @@ st.markdown(
         background: rgba(255, 255, 255, 0.03);
         padding: 25px;
         border-radius: 20px;
-        border-left: 6px solid #b388ff;
+        border-left: 6px solid #ff6e40;
         border-right: 1px solid rgba(255, 255, 255, 0.05);
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -97,12 +97,12 @@ st.markdown(
     }
     .counter-box {
         text-align: center;
-        background: linear-gradient(135deg, rgba(124, 77, 255, 0.12), rgba(63, 81, 181, 0.05));
-        border: 2px solid rgba(179, 136, 255, 0.4);
+        background: linear-gradient(135deg, rgba(255, 110, 64, 0.12), rgba(255, 75, 43, 0.05));
+        border: 2px solid rgba(255, 110, 64, 0.4);
         padding: 25px;
         border-radius: 22px;
         margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(124, 77, 255, 0.15);
+        box-shadow: 0 10px 30px rgba(255, 110, 64, 0.15);
     }
     .birthday-box-sena {
         text-align: center;
@@ -123,14 +123,14 @@ st.markdown(
         box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);
     }
     .welcome-banner {
-        background: linear-gradient(90deg, rgba(124,77,255,0.15), rgba(179,136,255,0.15));
+        background: linear-gradient(90deg, rgba(255,110,64,0.15), rgba(255,183,77,0.15));
         padding: 15px;
         border-radius: 15px;
-        border: 1px solid rgba(179,136,255,0.3);
+        border: 1px solid rgba(255,183,77,0.3);
         text-align: center;
         font-size: 20px;
         font-weight: bold;
-        color: #d1c4e9;
+        color: #ffb74d;
         margin-bottom: 20px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
@@ -146,28 +146,23 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası (Doğrudan Spotify URI'leri veya arama linkleri ile güncellendi)
+# En Son Seçtiğimiz Şarkılar Hafızası (Neşet Ertaş ve Sagopa Kajmer ile güncellendi)
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         (
-            "İrem Derici - Aşkımız Olay Olacak",
-            "Tam hayallerimiz gibisin, aşkımız olay olacak! ✨",
-            "https://open.spotify.com/search/İrem%20Derici%20Aşkımız%20Olay%20Olacak",
+            "Neşet Ertaş - Neredesin Sen",
+            "Gönül Dağımız, derin bir esinti... 🌿",
+            "https://open.spotify.com/search/Neşet%20Ertaş%20Neredesin%20Sen",
+        ),
+        (
+            "Sagopa Kajmer - Galiba",
+            "Gece yürüyüşlerinin vazgeçilmezi 🌙",
+            "https://open.spotify.com/search/Sagopa%20Kajmer%20Galiba",
         ),
         (
             "Kıraç - Endamın Yeter",
             "Bizim Şarkımız ✨",
             "https://open.spotify.com/search/Kıraç%20Endamın%20Yeter",
-        ),
-        (
-            "Neşet Ertaş - Yalan Dünya",
-            "Anadolu Esintisi 🌿",
-            "https://open.spotify.com/search/Neşet%20Ertaş%20Yalan%20Dünya",
-        ),
-        (
-            "Sagopa Kajmer - Galiba",
-            "Gece Yürüyüşleri 🌙",
-            "https://open.spotify.com/search/Sagopa%20Kajmer%20Galiba",
         ),
     ]
 
@@ -176,7 +171,7 @@ if not st.session_state.giris_yapildi:
     st.markdown(
         """
         <div class="welcome-container">
-            <div class="heart-icon">🌌</div>
+            <div class="heart-icon">❤️</div>
             <h2 style="margin-bottom: 5px;">Sonsuzluğun Başlangıcı</h2>
             <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Bu dijital evren sadece ikimiz için kuruldu.</p>
     """,
@@ -184,7 +179,7 @@ if not st.session_state.giris_yapildi:
     )
 
     st.markdown(
-        '<p style="color: #d1c4e9; font-size: 13px; font-weight: 500;'
+        '<p style="color: #ffb74d; font-size: 13px; font-weight: 500;'
         ' margin-bottom: 5px; text-align: center;">🔒 İkimiz için de en özel'
         " gün...</p>",
         unsafe_allow_html=True,
@@ -239,9 +234,9 @@ if st.session_state.giris_yapildi:
     st.markdown(
         f"""
     <div class="counter-box">
-        <h3 style="color: #d1c4e9; margin: 0; font-size: 20px;">Birlikte Geçen Her Anımız</h3>
-        <p style="font-size: 32px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(179,136,255,0.5);">{gun} Gün, {saat} Saat, {dakika} Dakika</p>
-        <p style="color: #b388ff; font-size: 14px; margin: 0; font-weight: 500;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
+        <h3 style="color: #ffb74d; margin: 0; font-size: 20px;">Birlikte Geçen Her Anımız</h3>
+        <p style="font-size: 32px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(255,110,64,0.5);">{gun} Gün, {saat} Saat, {dakika} Dakika</p>
+        <p style="color: #ffd54f; font-size: 14px; margin: 0; font-weight: 500;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
     </div>
     """,
         unsafe_allow_html=True,
@@ -311,7 +306,7 @@ if st.session_state.giris_yapildi:
     st.markdown("---")
     st.header("🌌 Sonsuzluğun Ufku")
 
-    img_path = "alanya.jpg"  # Dosya adı aynı kalabilir, istersen görseli değiştirebilirsin
+    img_path = "alanya.jpg"
     if os.path.exists(img_path):
         st.image(
             img_path,
@@ -389,13 +384,12 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div class="universe-card">
-    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi doğrudan Spotify üzerinden büyütebiliriz! 💖
+    Burası ikimizin müzik arşivimiz. En sevdiğimiz Neşet Ertaş ve Sagopa Kajmer ezgileriyle listemiz burada! Dilediğin zaman yeni bir şarkı daha ekleyebiliriz 💖
     </div>
     """,
         unsafe_allow_html=True,
     )
 
-    # Mevcut şarkıları ve doğrudan tıklanabilir Spotify bağlantılarını listele
     for sarki, aciklama, spotify_link in st.session_state.sarki_listesi:
         st.markdown(f"🎧 **[{sarki}]({spotify_link})** — *{aciklama}*")
 
@@ -403,10 +397,10 @@ if st.session_state.giris_yapildi:
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
     yeni_sarki = st.text_input(
         "Şarkı Adı ve Sanatçı:",
-        placeholder="Örn: İrem Derici - Aşkımız Olay Olacak",
+        placeholder="Örn: Neşet Ertaş - Gönül Dağı",
     )
     yeni_not = st.text_input(
-        "Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Arabada dinlemelik..."
+        "Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Ruhumuzu dinlendiren..."
     )
 
     if st.button("Şarkıyı Listeye Ekle ve Spotify'da Aç 🎶"):
@@ -424,7 +418,6 @@ if st.session_state.giris_yapildi:
                 " Spotify'da açılıyor! 🎉"
             )
 
-            # Spotify'ı otomatik yeni sekmede açmak için JavaScript bileşeni
             components.html(
                 f"""
                 <script>
@@ -489,7 +482,7 @@ if st.session_state.giris_yapildi:
     st.markdown("---")
     st.markdown(
         """
-    <div style="text-align: center; color: #d1c4e9; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(179,136,255,0.2);">
+    <div style="text-align: center; color: #ffb74d; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,110,64,0.2);">
     <b>İyi ki varsın sevgilim. Seni çok seviyorum.</b><br>
     <i>- Sonsuzluğun Başlangıcından...</i>
     </div>
