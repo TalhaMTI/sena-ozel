@@ -152,23 +152,26 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
   st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası (Şarkı Adı, Açıklama, Dinleme Linki)
+# Şarkı Listesi Hafızası (Spotify Entegrasyonlu)
 if "sarki_listesi" not in st.session_state:
   st.session_state.sarki_listesi = [
       (
           "Kıraç - Endamın Yeter",
           "Bizim Şarkımız ✨",
-          "https://www.youtube.com/results?search_query=Kıraç+Endamın+Yeter",
+          (
+              "https://open.spotify.com/search/"
+              "K%C4%B1ra%C3%A7%20Endam%C4%B1n%20Yeter"
+          ),
       ),
       (
           "Yalın - Ki Sen",
           "Kalbimin Sahibi 💞",
-          "https://www.youtube.com/results?search_query=Yalın+Ki+Sen",
+          "https://open.spotify.com/search/Yal%C4%B1n%20Ki%20Sen",
       ),
       (
           "Tarkan - Beni Çok Sev",
           "Ruhumun Eşiti 🌟",
-          "https://www.youtube.com/results?search_query=Tarkan+Beni+Çok+Sev",
+          "https://open.spotify.com/search/Tarkan%20Beni%20%C3%87ok%20Sev",
       ),
   ]
 
@@ -394,13 +397,13 @@ if st.session_state.giris_yapildi:
   st.markdown(
       """
     <div class="alanya-card">
-    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 Şarkıların üzerine tıklayarak hemen dinlemeye başlayabilirsin.
+    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 Şarkıların üzerine tıklayarak Spotify'da hemen dinlemeye başlayabilirsin.
     </div>
     """,
       unsafe_allow_html=True,
   )
 
-  # Mevcut şarkıları tıklanabilir linklerle listele
+  # Mevcut şarkıları Spotify tıklanabilir linkleriyle listele
   for sarki, aciklama, link in st.session_state.sarki_listesi:
     st.markdown(f"🎧 [{sarki}]({link}) — *{aciklama}*")
 
@@ -411,9 +414,21 @@ if st.session_state.giris_yapildi:
 
   if st.button("Şarkıyı Listeye Ekle 🎶"):
     if yeni_sarki:
-      sarki_link = f"https://www.youtube.com/results?search_query={yeni_sarki.replace(' ', '+')}"
-      st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız", sarki_link))
-      st.success(f"Harika! '{yeni_sarki}' başarıyla listemize eklendi! 🎉")
+      import urllib.parse
+
+      encoded_query = urllib.parse.quote(yeni_sarki)
+      spotify_link = f"https://open.spotify.com/search/{encoded_query}"
+      st.session_state.sarki_listesi.append(
+          (
+              yeni_sarki,
+              yeni_not if yeni_not else "Bizim Şarkımız",
+              spotify_link,
+          )
+      )
+      st.success(
+          f"Harika! '{yeni_sarki}' başarıyla Spotify bağlantısıyla listemize"
+          " eklendi! 🎉"
+      )
       st.rerun()
     else:
       st.warning("Lütfen eklemek istediğin şarkı adını boş bırakma sevgilim.")
