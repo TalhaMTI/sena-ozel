@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Tasarım ve Kalp Animasyonu İçin CSS/JS
+# Tasarım ve Balon Animasyonu İçin CSS/JS
 st.markdown(
     """
     <style>
@@ -38,39 +38,6 @@ st.markdown(
         50% { transform: scale(1.1); }
         100% { transform: scale(1); }
     }
-    
-    /* Ekranda Uçuşan Kalpler Efekti */
-    .floating-hearts-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 99999;
-    }
-    .floating-heart-item {
-        position: absolute;
-        bottom: -50px;
-        font-size: 32px;
-        animation: floatUpAnimation 4s ease-in-out infinite;
-        opacity: 0.95;
-    }
-    @keyframes floatUpAnimation {
-        0% {
-            transform: translateY(0) scale(0.5) rotate(0deg);
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.85;
-        }
-        100% {
-            transform: translateY(-110vh) scale(1.4) rotate(25deg);
-            opacity: 0;
-        }
-    }
-
     .stTextInput > label {
         color: #ffb74d !important;
         font-weight: 600 !important;
@@ -212,6 +179,7 @@ if not st.session_state.giris_yapildi:
     if sifre:
         if sifre == DOGRU_SIFRE:
             st.session_state.giris_yapildi = True
+            st.balloons()
             st.rerun()
         else:
             st.error("Şifre yanlış, ikimiz için özel olan o tarihi dene :)")
@@ -227,19 +195,6 @@ if st.session_state.giris_yapildi:
     """,
         unsafe_allow_html=True,
     )
-    
-    # Şifre girildikten sonra ekranda uçuşan kalpler geçiş efekti (HTML/CSS Component)
-    components.html("""
-        <div class="floating-hearts-overlay">
-            <div class="floating-heart-item" style="left: 8%; animation-duration: 3.2s; animation-delay: 0s;">❤️</div>
-            <div class="floating-heart-item" style="left: 22%; animation-duration: 4.1s; animation-delay: 0.3s;">💖</div>
-            <div class="floating-heart-item" style="left: 38%; animation-duration: 3.5s; animation-delay: 0.1s;">❤️</div>
-            <div class="floating-heart-item" style="left: 52%; animation-duration: 4.4s; animation-delay: 0.6s;">🤍</div>
-            <div class="floating-heart-item" style="left: 68%; animation-duration: 3.7s; animation-delay: 0.2s;">💖</div>
-            <div class="floating-heart-item" style="left: 82%; animation-duration: 4.0s; animation-delay: 0.5s;">❤️</div>
-            <div class="floating-heart-item" style="left: 92%; animation-duration: 3.4s; animation-delay: 0.4s;">💞</div>
-        </div>
-    """, height=0)
 
     # Türkiye Saati Baz Alınarak Ortak Zaman
     simdi = datetime.utcnow() + timedelta(hours=3)
@@ -414,7 +369,7 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div class="alanya-card">
-    Burası ikimizin müzik arşivimiz. Dilediğiniz zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 <br>
+    Burası ikimizin müzik arşivimiz. Dilediğin zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 <br>
     <i>(Şarkıların üstüne tıklayarak doğrudan Spotify uygulamasında açabilirsin!)</i>
     </div>
     """,
