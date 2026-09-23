@@ -134,6 +134,16 @@ st.markdown(
         margin-bottom: 20px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
+    .spotify-link {
+        color: #1ed760 !important;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+    .spotify-link:hover {
+        color: #1fdf64 !important;
+        text-decoration: underline;
+    }
     </style>
 """,
     unsafe_allow_html=True,
@@ -146,7 +156,7 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası (İrem Derici - Aşkımız Olay Olacak eklendi)
+# Şarkı Listesi Hafızası
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         ("İrem Derici - Aşkımız Olay Olacak", "Tam hayallerimiz gibisin, aşkımız olay olacak! ✨"),
@@ -235,7 +245,6 @@ if st.session_state.giris_yapildi:
     st.markdown("---")
     st.header("🎂 Heyecanla Beklenen Günler")
 
-    # Sena'nın Doğum Günü (19 Mayıs 2027)
     sena_dg = datetime(2027, 5, 19, 0, 0, 0)
     fark_sena = sena_dg - simdi
     sena_saniye = int(fark_sena.total_seconds())
@@ -256,7 +265,6 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
 
-    # Talha'nın Doğum Günü (20 Şubat 2027)
     talha_dg = datetime(2027, 2, 20, 0, 0, 0)
     fark_talha = talha_dg - simdi
     talha_saniye = int(fark_talha.total_seconds())
@@ -336,7 +344,7 @@ if st.session_state.giris_yapildi:
         else:
             st.info("📷 Klasöre 'fotograf2.jpg' ekle")
 
-    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ (KONYA & ALANYA) ---
+    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ ---
     st.markdown("---")
     st.header("🎯 Birlikte Yapacaklarımız")
     st.write(
@@ -377,15 +385,17 @@ if st.session_state.giris_yapildi:
     st.markdown(
         """
     <div class="alanya-card">
-    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖
+    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 <br>
+    <i>(Şarkıların üstüne tıklayarak doğrudan Spotify uygulamasında açabilirsin!)</i>
     </div>
     """,
         unsafe_allow_html=True,
     )
 
-    # Mevcut şarkıları listele
+    # Doğrudan Spotify Uygulamasını Tetikleyen Protokol (spotify:search:...)
     for sarki, aciklama in st.session_state.sarki_listesi:
-        st.markdown(f"🎧 **{sarki}** — *{aciklama}*")
+        spotify_app_url = f"spotify:search:{sarki.replace(' ', '%20')}"
+        st.markdown(f"🎧 <a href='{spotify_app_url}' class='spotify-link'>{sarki}</a> — *{aciklama}*", unsafe_allow_html=True)
 
     st.markdown("---")
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
@@ -397,11 +407,11 @@ if st.session_state.giris_yapildi:
             st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız"))
             st.success(f"Harika! '{yeni_sarki}' başarıyla listemize eklendi! 🎉")
             
-            # Spotify'ı otomatik yeni sekmede açmak için JavaScript bileşeni tetiklenir
-            spotify_url = f"https://open.spotify.com/search/{yeni_sarki.replace(' ', '%20')}"
+            # Yeni şarkı eklendiğinde doğrudan uygulamayı tetikle
+            spotify_app_url = f"spotify:search:{yeni_sarki.replace(' ', '%20')}"
             components.html(f"""
                 <script>
-                    window.open("{spotify_url}", "_blank");
+                    window.location.href = "{spotify_app_url}";
                 </script>
             """, height=0)
             
