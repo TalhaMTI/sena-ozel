@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Tasarım ve Kalp Efekti İçin HTML/CSS/JS
+# Tasarım ve Kalp Geçiş Animasyonu İçin CSS/JS
 st.markdown(
     """
     <style>
@@ -174,7 +174,7 @@ if not st.session_state.giris_yapildi:
         "", type="password", placeholder="", label_visibility="collapsed"
     )
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True,)
 
     if sifre:
         if sifre == DOGRU_SIFRE:
@@ -195,34 +195,54 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
     
-    # Balon efekti yerine ekranın altından yukarı fışkıran/süzülen kalpler (Canvas Confetti kütüphanesiyle kalp şekli)
+    # Şifre girildikten sonra tetiklenen TAM KALP ŞEKLİNDE romantik geçiş efekti (Canvas Confetti SVG Kalp Entegrasyonu)
     components.html("""
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
         <script>
-            // Kalp şeklinde özelleştirilmiş geçiş efekti
-            function launchHearts() {
-                var count = 200;
-                var defaults = {
-                    origin: { y: 0.7 },
-                    shapes: ['circle'],
-                    colors: ['#ff0000', '#ff69b4', '#ff1493', '#ffffff', '#ff6e40']
-                };
+            // SVG Kalp Şekli Tanımı
+            const scalar = 2;
+            const heartShape = confetti.shapeFromPath({
+                path: 'M167 72c19,-36 71,-41 97,0c23,37 0,91 -97,143c-97,-52 -120,-106 -97,-143c26,-41 78,-36 97,0z'
+            });
 
-                function fire(particleRatio, opts) {
-                    confetti(Object.assign({}, defaults, opts, {
-                        particleCount: Math.floor(count * particleRatio)
-                    }));
+            function fireRomanticHearts() {
+                let duration = 3.5 * 1000;
+                let animationEnd = Date.now() + duration;
+                let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 99999 };
+
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
                 }
 
-                fire(0.25, { spread: 26, startVelocity: 55 });
-                fire(0.2, { spread: 60 });
-                fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-                fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-                fire(0.1, { spread: 120, startVelocity: 45 });
+                let interval = setInterval(function() {
+                    let timeLeft = animationEnd - Date.now();
+
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+
+                    let particleCount = 50 * (timeLeft / duration);
+                    
+                    // Kalp yağmuru patlamaları
+                    confetti(Object.assign({}, defaults, {
+                        particleCount,
+                        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                        shapes: [heartShape],
+                        scalar: scalar,
+                        colors: ['#ff0000', '#ff69b4', '#ff1493', '#ff4081', '#ff80ab']
+                    }));
+                    confetti(Object.assign({}, defaults, {
+                        particleCount,
+                        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                        shapes: [heartShape],
+                        scalar: scalar,
+                        colors: ['#ff0000', '#ff69b4', '#ff1493', '#ff4081', '#ff80ab']
+                    }));
+                }, 250);
             }
-            
-            // Sayfa yüklendiği an çalıştır
-            launchHearts();
+
+            // Sayfa açıldığı an çalıştır
+            fireRomanticHearts();
         </script>
     """, height=0)
 
