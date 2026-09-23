@@ -8,19 +8,19 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS
+# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık & Okunaklı CSS
 st.markdown(
     """
     <style>
     .stApp {
         background: linear-gradient(135deg, #090d16 0%, #161f37 40%, #2a1b3d 100%);
-        color: #f8fafc;
+        color: #ffffff;
     }
     .welcome-container {
-        background: rgba(255, 255, 255, 0.04);
+        background: rgba(255, 255, 255, 0.07);
         padding: 45px 30px;
         border-radius: 28px;
-        border: 1px solid rgba(255, 110, 64, 0.4);
+        border: 1px solid rgba(255, 110, 64, 0.6);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(15px);
         text-align: center;
@@ -43,16 +43,27 @@ st.markdown(
         50% { transform: scale(1.12); text-shadow: 0 0 25px rgba(255,110,64,0.8); }
         100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
     }
+    
+    /* Input kutuları ve yazı netliği için güncellemeler */
+    .stTextInput > label {
+        color: #ffb74d !important;
+        font-weight: 600 !important;
+        font-size: 15px !important;
+    }
     .stTextInput > div > div > input {
         background-color: rgba(15, 23, 42, 0.95) !important;
         color: #ffffff !important;
         border-radius: 14px !important;
         border: 2px solid #ff6e40 !important;
-        text-align: center;
-        font-size: 20px;
-        letter-spacing: 2px;
-        padding: 12px;
+        font-size: 16px !important;
+        padding: 12px !important;
     }
+    /* Placeholder yazılarını okunabilir ve canlı yaptık */
+    .stTextInput > div > div > input::placeholder {
+        color: #cbd5e1 !important;
+        opacity: 1 !important;
+    }
+    
     .stButton>button {
         background: linear-gradient(45deg, #ff6e40, #ff9f43);
         color: white;
@@ -75,6 +86,9 @@ st.markdown(
         font-family: 'Helvetica Neue', sans-serif;
         letter-spacing: 0.5px;
     }
+    p, label, span {
+        color: #f1f5f9 !important;
+    }
     .content-container {
         animation: smoothOpen 1s ease-in-out;
     }
@@ -83,22 +97,23 @@ st.markdown(
         to { opacity: 1; transform: scale(1); }
     }
     .alanya-card {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(255, 255, 255, 0.05);
         padding: 25px;
         border-radius: 20px;
         border-left: 6px solid #ff6e40;
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         margin-bottom: 25px;
         font-size: 16px;
         line-height: 1.7;
         box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        color: #ffffff !important;
     }
     .counter-box {
         text-align: center;
-        background: linear-gradient(135deg, rgba(255, 110, 64, 0.12), rgba(255, 75, 43, 0.05));
-        border: 2px solid rgba(255, 110, 64, 0.4);
+        background: linear-gradient(135deg, rgba(255, 110, 64, 0.15), rgba(255, 75, 43, 0.08));
+        border: 2px solid rgba(255, 110, 64, 0.5);
         padding: 25px;
         border-radius: 22px;
         margin-bottom: 25px;
@@ -106,8 +121,8 @@ st.markdown(
     }
     .birthday-box-sena {
         text-align: center;
-        background: linear-gradient(135deg, rgba(233, 30, 99, 0.12), rgba(156, 39, 176, 0.05));
-        border: 2px solid rgba(233, 30, 99, 0.4);
+        background: linear-gradient(135deg, rgba(233, 30, 99, 0.15), rgba(156, 39, 176, 0.08));
+        border: 2px solid rgba(233, 30, 99, 0.5);
         padding: 25px;
         border-radius: 22px;
         margin-bottom: 25px;
@@ -115,33 +130,33 @@ st.markdown(
     }
     .birthday-box-talha {
         text-align: center;
-        background: linear-gradient(135deg, rgba(33, 150, 243, 0.12), rgba(0, 188, 212, 0.05));
-        border: 2px solid rgba(33, 150, 243, 0.4);
+        background: linear-gradient(135deg, rgba(33, 150, 243, 0.15), rgba(0, 188, 212, 0.08));
+        border: 2px solid rgba(33, 150, 243, 0.5);
         padding: 25px;
         border-radius: 22px;
         margin-bottom: 25px;
         box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);
     }
     .welcome-banner {
-        background: linear-gradient(90deg, rgba(255,110,64,0.15), rgba(255,183,77,0.15));
+        background: linear-gradient(90deg, rgba(255,110,64,0.2), rgba(255,183,77,0.2));
         padding: 15px;
         border-radius: 15px;
-        border: 1px solid rgba(255,183,77,0.3);
+        border: 1px solid rgba(255,183,77,0.4);
         text-align: center;
         font-size: 20px;
         font-weight: bold;
-        color: #ffb74d;
+        color: #ffb74d !important;
         margin-bottom: 20px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     .spotify-link {
-        color: #1ed760 !important;
+        color: #2ee672 !important;
         text-decoration: none;
         font-weight: bold;
         transition: 0.2s;
     }
     .spotify-link:hover {
-        color: #1fdf64 !important;
+        color: #1ed760 !important;
         text-decoration: underline;
     }
     </style>
@@ -172,20 +187,20 @@ if not st.session_state.giris_yapildi:
         <div class="welcome-container">
             <div class="heart-icon">❤️</div>
             <h2 style="margin-bottom: 5px;">Alanya'nın Gizli Sığınağı</h2>
-            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Bu dijital dünya sadece ikimiz için kuruldu.</p>
+            <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 20px;">Bu dijital dünya sadece ikimiz için kuruldu.</p>
     """,
         unsafe_allow_html=True,
     )
 
     st.markdown(
-        '<p style="color: #ffb74d; font-size: 13px; font-weight: 500;'
+        '<p style="color: #ffb74d; font-size: 13px; font-weight: 600;'
         ' margin-bottom: 5px; text-align: center;">🔒 İkimiz için de en özel'
         " gün...</p>",
         unsafe_allow_html=True,
     )
 
     sifre = st.text_input(
-        "", type="password", placeholder="", label_visibility="collapsed"
+        "", type="password", placeholder="GG/AA/YYYY", label_visibility="collapsed"
     )
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -235,7 +250,7 @@ if st.session_state.giris_yapildi:
     <div class="counter-box">
         <h3 style="color: #ffb74d; margin: 0; font-size: 20px;">Birlikte Geçen Her Anımız</h3>
         <p style="font-size: 32px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(255,110,64,0.5);">{gun} Gün, {saat} Saat, {dakika} Dakika</p>
-        <p style="color: #ffd54f; font-size: 14px; margin: 0; font-weight: 500;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
+        <p style="color: #ffe082; font-size: 14px; margin: 0; font-weight: 600;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
     </div>
     """,
         unsafe_allow_html=True,
@@ -259,7 +274,7 @@ if st.session_state.giris_yapildi:
     <div class="birthday-box-sena">
         <h3 style="color: #ff80ab; margin: 0; font-size: 20px;">🌸 Sena'nın Doğum Gününe Kalan</h3>
         <p style="font-size: 28px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(233,30,99,0.5);">{sena_gun} Gün, {sena_saat} Saat, {sena_dakika} Dakika</p>
-        <p style="color: #ff80ab; font-size: 14px; margin: 0; font-weight: 500;">19 Mayıs 2027 ✨</p>
+        <p style="color: #ff80ab; font-size: 14px; margin: 0; font-weight: 600;">19 Mayıs 2027 ✨</p>
     </div>
     """,
         unsafe_allow_html=True,
@@ -279,7 +294,7 @@ if st.session_state.giris_yapildi:
     <div class="birthday-box-talha">
         <h3 style="color: #4fc3f7; margin: 0; font-size: 20px;">🎉 Talha'nın Doğum Gününe Kalan</h3>
         <p style="font-size: 28px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(33,150,243,0.5);">{talha_gun} Gün, {talha_saat} Saat, {talha_dakika} Dakika</p>
-        <p style="color: #4fc3f7; font-size: 14px; margin: 0; font-weight: 500;">20 Şubat 2027 🚀</p>
+        <p style="color: #4fc3f7; font-size: 14px; margin: 0; font-weight: 600;">20 Şubat 2027 🚀</p>
     </div>
     """,
         unsafe_allow_html=True,
@@ -392,7 +407,7 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
 
-    # Doğrudan Spotify Uygulamasını Tetikleyen Protokol (spotify:search:...)
+    # Doğrudan Spotify Uygulamasını Tetikleyen Protokol
     for sarki, aciklama in st.session_state.sarki_listesi:
         spotify_app_url = f"spotify:search:{sarki.replace(' ', '%20')}"
         st.markdown(f"🎧 <a href='{spotify_app_url}' class='spotify-link'>{sarki}</a> — *{aciklama}*", unsafe_allow_html=True)
@@ -407,7 +422,6 @@ if st.session_state.giris_yapildi:
             st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız"))
             st.success(f"Harika! '{yeni_sarki}' başarıyla listemize eklendi! 🎉")
             
-            # Yeni şarkı eklendiğinde doğrudan uygulamayı tetikle
             spotify_app_url = f"spotify:search:{yeni_sarki.replace(' ', '%20')}"
             components.html(f"""
                 <script>
@@ -472,7 +486,7 @@ if st.session_state.giris_yapildi:
     st.markdown("---")
     st.markdown(
         """
-    <div style="text-align: center; color: #ffb74d; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,110,64,0.2);">
+    <div style="text-align: center; color: #ffb74d; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,110,64,0.3);">
     <b>İyi ki varsın sevgilim. Seni çok seviyorum.</b><br>
     <i>- Senin Tarzınla, Benim Elimden...</i>
     </div>
