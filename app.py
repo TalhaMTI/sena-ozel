@@ -145,12 +145,24 @@ DOGRU_SIFRE = "19/09/2026"
 if "giris_yapildi" not in st.session_state:
   st.session_state.giris_yapildi = False
 
-# Şarkı Listesi Hafızası (Sena veya Sen ekleme yaptıkça burada güncellenir)
+# Şarkı Listesi Hafızası (Şarkı Adı, Açıklama, Dinleme Linki)
 if "sarki_listesi" not in st.session_state:
   st.session_state.sarki_listesi = [
-      ("Kıraç - Endamın Yeter", "Bizim Şarkımız ✨"),
-      ("Neşet Ertaş - Yalan Dünya", "Anadolu Esintisi 🌿"),
-      ("Sagopa Kajmer - Galiba", "Gece Yürüyüşleri 🌙"),
+      (
+          "Kıraç - Endamın Yeter",
+          "Bizim Şarkımız ✨",
+          "https://www.youtube.com/results?search_query=Kıraç+Endamın+Yeter",
+      ),
+      (
+          "Yalın - Ki Sen",
+          "Kalbimin Sahibi 💞",
+          "https://www.youtube.com/results?search_query=Yalın+Ki+Sen",
+      ),
+      (
+          "Tarkan - Beni Çok Sev",
+          "Ruhumun Eşiti 🌟",
+          "https://www.youtube.com/results?search_query=Tarkan+Beni+Çok+Sev",
+      ),
   ]
 
 # Giriş Ekranı
@@ -375,15 +387,15 @@ if st.session_state.giris_yapildi:
   st.markdown(
       """
     <div class="alanya-card">
-    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖
+    Burası ikimizin müzik arşivimiz. Sena dilediği zaman buraya yeni bir şarkı ekleyebilir, listemizi birlikte büyütebiliriz! 💖 Şarkıların üzerine tıklayarak hemen dinlemeye başlayabilirsin.
     </div>
     """,
       unsafe_allow_html=True,
   )
 
-  # Mevcut şarkıları listele
-  for sarki, aciklama in st.session_state.sarki_listesi:
-    st.markdown(f"🎧 **{sarki}** — *{aciklama}*")
+  # Mevcut şarkıları tıklanabilir linklerle listele
+  for sarki, aciklama, link in st.session_state.sarki_listesi:
+    st.markdown(f"🎧 [{sarki}]({link}) — *{aciklama}*")
 
   st.markdown("---")
   st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
@@ -392,7 +404,9 @@ if st.session_state.giris_yapildi:
 
   if st.button("Şarkıyı Listeye Ekle 🎶"):
     if yeni_sarki:
-      st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız"))
+      # Kullanıcının eklediği şarkı için otomatik arama linki oluşturulur
+      sarki_link = f"https://www.youtube.com/results?search_query={yeni_sarki.replace(' ', '+')}"
+      st.session_state.sarki_listesi.append((yeni_sarki, yeni_not if yeni_not else "Bizim Şarkımız", sarki_link))
       st.success(f"Harika! '{yeni_sarki}' başarıyla listemize eklendi! 🎉")
       st.rerun()
     else:
