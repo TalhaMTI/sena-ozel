@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Tasarım, Kalp Animasyonları ve Boş Placeholder Ayarları
+# Tasarım ve Kalp Efekti İçin HTML/CSS/JS
 st.markdown(
     """
     <style>
@@ -38,39 +38,6 @@ st.markdown(
         50% { transform: scale(1.1); }
         100% { transform: scale(1); }
     }
-    
-    /* Uçuşan Kalpler Animasyonu */
-    .floating-hearts-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 99999;
-    }
-    .floating-heart {
-        position: absolute;
-        bottom: -50px;
-        font-size: 28px;
-        animation: floatUp 4s ease-in-out infinite;
-        opacity: 0.9;
-    }
-    @keyframes floatUp {
-        0% {
-            transform: translateY(0) scale(0.6) rotate(0deg);
-            opacity: 1;
-        }
-        50% {
-            opacity: 0.8;
-        }
-        100% {
-            transform: translateY(-100vh) scale(1.4) rotate(20deg);
-            opacity: 0;
-        }
-    }
-    
     .stTextInput > label {
         color: #ffb74d !important;
         font-weight: 600 !important;
@@ -83,7 +50,6 @@ st.markdown(
         border: 1.5px solid #ff6e40 !important;
         font-size: 15px !important;
     }
-    
     .stButton>button {
         background: linear-gradient(45deg, #ff6e40, #ff8f00);
         color: white;
@@ -229,50 +195,36 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
     
-    # Uçuşan Kalpler Efekti (Tam Entegre)
+    # Balon efekti yerine ekranın altından yukarı fışkıran/süzülen kalpler (Canvas Confetti kütüphanesiyle kalp şekli)
     components.html("""
-        <style>
-        .floating-hearts-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 99999;
-            background: transparent;
-        }
-        .floating-heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 28px;
-            animation: floatUp 4s ease-in-out infinite;
-            opacity: 0.9;
-        }
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(0.6) rotate(0deg);
-                opacity: 1;
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+        <script>
+            // Kalp şeklinde özelleştirilmiş geçiş efekti
+            function launchHearts() {
+                var count = 200;
+                var defaults = {
+                    origin: { y: 0.7 },
+                    shapes: ['circle'],
+                    colors: ['#ff0000', '#ff69b4', '#ff1493', '#ffffff', '#ff6e40']
+                };
+
+                function fire(particleRatio, opts) {
+                    confetti(Object.assign({}, defaults, opts, {
+                        particleCount: Math.floor(count * particleRatio)
+                    }));
+                }
+
+                fire(0.25, { spread: 26, startVelocity: 55 });
+                fire(0.2, { spread: 60 });
+                fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+                fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+                fire(0.1, { spread: 120, startVelocity: 45 });
             }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100vh) scale(1.4) rotate(20deg);
-                opacity: 0;
-            }
-        }
-        </style>
-        <div class="floating-hearts-container">
-            <div class="floating-heart" style="left: 10%; animation-duration: 3.5s; animation-delay: 0s;">❤️</div>
-            <div class="floating-heart" style="left: 25%; animation-duration: 4.2s; animation-delay: 0.5s;">💖</div>
-            <div class="floating-heart" style="left: 40%; animation-duration: 3.8s; animation-delay: 0.2s;">❤️</div>
-            <div class="floating-heart" style="left: 55%; animation-duration: 4.5s; animation-delay: 0.8s;">🤍</div>
-            <div class="floating-heart" style="left: 70%; animation-duration: 3.6s; animation-delay: 0.4s;">💖</div>
-            <div class="floating-heart" style="left: 85%; animation-duration: 4.0s; animation-delay: 0.6s;">❤️</div>
-        </div>
-    """, height=50)
+            
+            // Sayfa yüklendiği an çalıştır
+            launchHearts();
+        </script>
+    """, height=0)
 
     # Türkiye Saati Baz Alınarak Ortak Zaman
     simdi = datetime.utcnow() + timedelta(hours=3)
