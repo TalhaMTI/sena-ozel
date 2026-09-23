@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Orijinal Muhteşem Renk Paleti ve Sadece Giriş Yazılarını Düzelten CSS
+# Tasarım ve Boş Placeholder Ayarları
 st.markdown(
     """
     <style>
@@ -39,7 +39,6 @@ st.markdown(
         100% { transform: scale(1); }
     }
     
-    /* Şarkı ekleme alanındaki yazıların ve placeholder'ların net, okunabilir beyaz olmasını sağlayan ayar */
     .stTextInput > label {
         color: #ffb74d !important;
         font-weight: 600 !important;
@@ -51,10 +50,6 @@ st.markdown(
         border-radius: 12px !important;
         border: 1.5px solid #ff6e40 !important;
         font-size: 15px !important;
-    }
-    .stTextInput > div > div > input::placeholder {
-        color: #ffffff !important;
-        opacity: 0.85 !important;
     }
     
     .stButton>button {
@@ -178,7 +173,7 @@ if not st.session_state.giris_yapildi:
     )
 
     sifre = st.text_input(
-        "", type="password", placeholder="GG/AA/YYYY", label_visibility="collapsed"
+        "", type="password", placeholder="", label_visibility="collapsed"
     )
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -389,8 +384,8 @@ if st.session_state.giris_yapildi:
 
     st.markdown("---")
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
-    yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı:", placeholder="Örn: İrem Derici - Aşkımız Olay Olacak")
-    yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not:", placeholder="Örn: Arabada dinlemelik...")
+    yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı:", placeholder="", key="yeni_sarki_input")
+    yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not:", placeholder="", key="yeni_not_input")
 
     if st.button("Şarkıyı Listeye Ekle 🎶"):
         if yeni_sarki:
