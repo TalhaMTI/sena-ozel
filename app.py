@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS (Tüm Etiketler Belirginleştirildi)
+# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS
 st.markdown(
     """
     <style>
@@ -43,16 +43,15 @@ st.markdown(
         50% { transform: scale(1.12); text-shadow: 0 0 25px rgba(255,110,64,0.8); }
         100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
     }
-    .stTextInput > div > div > input {
+    .stTextInput > div > div > input, .stTextArea textarea {
         background-color: rgba(15, 23, 42, 0.95) !important;
         color: #ffffff !important;
         border-radius: 14px !important;
         border: 2px solid #ff6e40 !important;
-        font-size: 18px;
+        font-size: 16px;
         padding: 12px;
     }
-    /* Tüm input ve select etiketlerini çok daha belirgin yaptık */
-    .stTextInput label, .stSelectbox label {
+    .stTextInput label, .stSelectbox label, .stRadio label {
         color: #ffb74d !important;
         font-weight: 600 !important;
         font-size: 16px !important;
@@ -99,32 +98,34 @@ st.markdown(
         line-height: 1.7;
         box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
-    .counter-box {
+    .quote-box {
+        background: linear-gradient(135deg, rgba(255, 183, 77, 0.1), rgba(255, 110, 64, 0.05));
+        border: 1px dashed rgba(255, 183, 77, 0.4);
+        padding: 20px;
+        border-radius: 16px;
         text-align: center;
+        font-style: italic;
+        color: #ffe0b2;
+        margin-bottom: 25px;
+    }
+    .counter-box, .birthday-box-sena, .birthday-box-talha {
+        text-align: center;
+        padding: 25px;
+        border-radius: 22px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .counter-box {
         background: linear-gradient(135deg, rgba(255, 110, 64, 0.12), rgba(255, 75, 43, 0.05));
         border: 2px solid rgba(255, 110, 64, 0.4);
-        padding: 25px;
-        border-radius: 22px;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(255, 110, 64, 0.15);
     }
     .birthday-box-sena {
-        text-align: center;
         background: linear-gradient(135deg, rgba(233, 30, 99, 0.12), rgba(156, 39, 176, 0.05));
         border: 2px solid rgba(233, 30, 99, 0.4);
-        padding: 25px;
-        border-radius: 22px;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
     }
     .birthday-box-talha {
-        text-align: center;
         background: linear-gradient(135deg, rgba(33, 150, 243, 0.12), rgba(0, 188, 212, 0.05));
         border: 2px solid rgba(33, 150, 243, 0.4);
-        padding: 25px;
-        border-radius: 22px;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);
     }
     .welcome-banner {
         background: linear-gradient(90deg, rgba(255,110,64,0.15), rgba(255,183,77,0.15));
@@ -138,6 +139,13 @@ st.markdown(
         margin-bottom: 20px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
+    .timeline-item {
+        padding: 15px 20px;
+        border-left: 3px solid #ff6e40;
+        margin-bottom: 15px;
+        background: rgba(255,255,255,0.02);
+        border-radius: 0 12px 12px 0;
+    }
     </style>
 """,
     unsafe_allow_html=True,
@@ -146,27 +154,31 @@ st.markdown(
 # Şifren
 DOGRU_SIFRE = "19/09/2026"
 
-# Oturum Durumu Kontrolü
 if "giris_yapildi" not in st.session_state:
     st.session_state.giris_yapildi = False
 
-# Şarkı Listesi
+if "notlar" not in st.session_state:
+    st.session_state.notlar = [
+        "Bugün yine iyi ki varsın sevgilim. ❤️",
+        "Gözlerin aklımdan çıkmıyor...",
+    ]
+
 if "sarki_listesi" not in st.session_state:
     st.session_state.sarki_listesi = [
         (
+            "Kıraç - Endamın Yeter",
+            "Ruhumuza kazınan o eşsiz parça 🎸",
+            "spotify:search:Kıraç%20Endamın%20Yeter",
+        ),
+        (
             "Duman - Senden Daha Güzel",
-            "Senden daha güzel kim var ki... 🎸",
+            "Senden daha güzel kim var ki... ✨",
             "spotify:search:Duman%20Senden%20Daha%20Güzel",
         ),
         (
             "Yalın - Ki Sen",
-            "Ruhumuza dokunan o narince his ✨",
+            "Kalbe dokunan en tatlı his 💞",
             "spotify:search:Yalın%20Ki%20Sen",
-        ),
-        (
-            "İrem Derici - Kalbimin Tek Sahibine",
-            "İkimizin en tatlı anı 💞",
-            "spotify:search:İrem%20Derici%20Kalbimin%20Tek%20Sahibine",
         ),
     ]
 
@@ -206,7 +218,6 @@ if not st.session_state.giris_yapildi:
 if st.session_state.giris_yapildi:
     st.markdown('<div class="content-container">', unsafe_allow_html=True)
 
-    # Karşılama bandı
     st.markdown(
         """
         <div class="welcome-banner">
@@ -217,8 +228,17 @@ if st.session_state.giris_yapildi:
     )
     st.balloons()
 
-    # Türkiye Saati Baz Alınarak Ortak Zaman
     simdi = datetime.utcnow() + timedelta(hours=3)
+
+    # --- 0. GÜNÜN AŞK SÖZÜ ---
+    st.markdown(
+        """
+    <div class="quote-box">
+        <b>Günün Sözü:</b> "Dünyanın neresinde olursan ol, kalbimin attığı yer hep senin yanın..." ✨
+    </div>
+    """,
+        unsafe_allow_html=True,
+    )
 
     # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI ---
     st.markdown("---")
@@ -226,10 +246,7 @@ if st.session_state.giris_yapildi:
 
     baslangic_tarihi = datetime(2026, 9, 19, 15, 11, 0)
     fark = simdi - baslangic_tarihi
-
-    toplam_saniye = int(fark.total_seconds())
-    if toplam_saniye < 0:
-        toplam_saniye = 0
+    toplam_saniye = max(0, int(fark.total_seconds()))
 
     gun = toplam_saniye // 86400
     saat = (toplam_saniye % 86400) // 3600
@@ -247,50 +264,33 @@ if st.session_state.giris_yapildi:
     )
 
     # --- DOĞUM GÜNÜ SAYAÇLARI ---
-    st.markdown("---")
-    st.header("🎂 Heyecanla Beklenen Günler")
-
-    # Sena'nın Doğum Günü (19 Mayıs 2027)
-    sena_dg = datetime(2027, 5, 19, 0, 0, 0)
-    fark_sena = sena_dg - simdi
-    sena_saniye = int(fark_sena.total_seconds())
-    if sena_saniye < 0:
-        sena_saniye = 0
-    sena_gun = sena_saniye // 86400
-    sena_saat = (sena_saniye % 86400) // 3600
-    sena_dakika = (sena_saniye % 3600) // 60
-
-    st.markdown(
-        f"""
-    <div class="birthday-box-sena">
-        <h3 style="color: #ff80ab; margin: 0; font-size: 20px;">🌸 Sena'nın Doğum Gününe Kalan</h3>
-        <p style="font-size: 28px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(233,30,99,0.5);">{sena_gun} Gün, {sena_saat} Saat, {sena_dakika} Dakika</p>
-        <p style="color: #ff80ab; font-size: 14px; margin: 0; font-weight: 500;">19 Mayıs 2027 ✨</p>
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    # Talha'nın Doğum Günü (20 Şubat 2027)
-    talha_dg = datetime(2027, 2, 20, 0, 0, 0)
-    fark_talha = talha_dg - simdi
-    talha_saniye = int(fark_talha.total_seconds())
-    if talha_saniye < 0:
-        talha_saniye = 0
-    talha_gun = talha_saniye // 86400
-    talha_saat = (talha_saniye % 86400) // 3600
-    talha_dakika = (talha_saniye % 3600) // 60
-
-    st.markdown(
-        f"""
-    <div class="birthday-box-talha">
-        <h3 style="color: #4fc3f7; margin: 0; font-size: 20px;">🎉 Talha'nın Doğum Gününe Kalan</h3>
-        <p style="font-size: 28px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(33,150,243,0.5);">{talha_gun} Gün, {talha_saat} Saat, {talha_dakika} Dakika</p>
-        <p style="color: #4fc3f7; font-size: 14px; margin: 0; font-weight: 500;">20 Şubat 2027 🚀</p>
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
+    col_b1, col_b2 = st.columns(2)
+    with col_b1:
+        sena_dg = datetime(2027, 5, 19, 0, 0, 0)
+        s_gun = max(0, int((sena_dg - simdi).total_seconds())) // 86400
+        st.markdown(
+            f"""
+        <div class="birthday-box-sena">
+            <h4 style="color: #ff80ab; margin: 0;">🌸 Sena'nın Doğum Günü</h4>
+            <p style="font-size: 22px; font-weight: bold; color: #fff; margin: 8px 0;">{s_gun} Gün Kaldı</p>
+            <p style="color: #ff80ab; font-size: 12px; margin: 0;">19 Mayıs 2027</p>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
+    with col_b2:
+        talha_dg = datetime(2027, 2, 20, 0, 0, 0)
+        t_gun = max(0, int((talha_dg - simdi).total_seconds())) // 86400
+        st.markdown(
+            f"""
+        <div class="birthday-box-talha">
+            <h4 style="color: #4fc3f7; margin: 0;">🎉 Talha'nın Doğum Günü</h4>
+            <p style="font-size: 22px; font-weight: bold; color: #fff; margin: 8px 0;">{t_gun} Gün Kaldı</p>
+            <p style="color: #4fc3f7; font-size: 12px; margin: 0;">20 Şubat 2027</p>
+        </div>
+        """,
+            unsafe_allow_html=True,
+        )
 
     # --- 2. BÖLÜM: MÜZİK ÇALAR ---
     st.markdown("---")
@@ -329,6 +329,23 @@ if st.session_state.giris_yapildi:
     Bütün ışıklar sönse, gökyüzündeki bütün takımyıldızları kaybolsa bile, senin o gülüşün ömrümün her köşesini aydınlatmaya yeter.<br>
     Bu site; dünyanın gürültüsünden uzakta, kalplerimizin atışına sakladığımız, sadece ruhunun huzur bulacağı bizim sonsuzluk limanımız...
     </div>
+    """,
+        unsafe_allow_html=True,
+    )
+
+    # --- YENİ EKLENEN: İLİŞKİ ZAMAN ÇİZELGESİ (TIMELINE) ---
+    st.markdown("---")
+    st.header("🗺️ Anı Zaman Çizelgemiz")
+    st.markdown(
+        """
+        <div class="timeline-item">
+            <b style="color: #ffb74d;">19 Eylül 2026 — İlk Adım</b>
+            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 14px;">Kalplerimizin aynı ritimde atmaya başladığı o unutulmaz başlangıç.</p>
+        </div>
+        <div class="timeline-item">
+            <b style="color: #ffb74d;">Sonsuz Yolculuk — Gelecek Hatıralarımız</b>
+            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 14px;">Birlikte yazacağımız daha binlerce güzel anı ve kahkaha seni bekliyor.</p>
+        </div>
     """,
         unsafe_allow_html=True,
     )
@@ -382,7 +399,22 @@ if st.session_state.giris_yapildi:
     for item in bucket_list:
         st.checkbox(item, value=False)
 
-    # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ VE SPOTIFY ENTEGRASYONU ---
+    # --- YENİ EKLENEN: MİNİ AŞK TESTİ ---
+    st.markdown("---")
+    st.header("💖 Mini Aşk & Anı Testi")
+    cevap = st.radio(
+        "En huzurlu bulduğumuz an hangisi?",
+        [
+            "Seçiniz...",
+            "Baş başa sessizce oturduğumuz anlar",
+            "Göz göze gelip güldüğümüz anlar",
+            "Hepsi ve her anımız ✨",
+        ],
+    )
+    if cevap == "Hepsi ve her anımız ✨":
+        st.success("Çok haklısın sevgilim, seninle olan her saniye kusursuz! 🥰")
+
+    # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ ---
     st.markdown("---")
     st.header("🎵 Geleceğin Şarkı Listesi & Ortak Nota")
     st.markdown(
@@ -420,7 +452,7 @@ if st.session_state.giris_yapildi:
             )
             st.success(
                 f"Harika! '{yeni_sarki}' başarıyla listemize eklendi ve"
-                " Spotify uygulamasında açılıyor! 🎉"
+                " Spotify'da açılıyor! 🎉"
             )
 
             components.html(
@@ -449,6 +481,28 @@ if st.session_state.giris_yapildi:
     """,
         unsafe_allow_html=True,
     )
+
+    # --- YENİ EKLENEN: NOT BIRAKMA KUTUSU ---
+    st.markdown("---")
+    st.header("💌 Anlık Not Bırakma Kutusu")
+    yeni_not_metin = st.text_area(
+        "Bana buraya küçük bir not bırakmak ister misin sevgilim?",
+        placeholder="Aklından geçenleri yaz...",
+    )
+    if st.button("Notu Kaydet 📌"):
+        if yeni_not_metin:
+            st.session_state.notlar.append(yeni_not_metin)
+            st.success(
+                "Notun kalbime ve bu siteye kaydedildi sevgilim! İyi ki varsın. ❤️"
+            )
+
+    if st.session_state.notlar:
+        st.markdown(
+            "<h4 style='color: #ffb74d; margin-top: 20px;'>Geçmiş Notlarımız:</h4>",
+            unsafe_allow_html=True,
+        )
+        for n in st.session_state.notlar:
+            st.markdown(f"- 💬 {n}")
 
     # --- 8. BÖLÜM: ORTAK ROTALARIMIZ ---
     st.markdown("---")
