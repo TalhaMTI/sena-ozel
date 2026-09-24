@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
 
-# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS
+# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS (Tüm Etiketler Belirginleştirildi)
 st.markdown(
     """
     <style>
@@ -51,7 +51,12 @@ st.markdown(
         font-size: 16px;
         padding: 12px;
     }
-    .stTextInput label, .stSelectbox label, .stRadio label {
+    /* Metin kutusu içi placeholder (silik yazı) rengini belirginleştirme */
+    .stTextArea textarea::placeholder {
+        color: #ffcc80 !important;
+        opacity: 0.8 !important;
+    }
+    .stTextInput label, .stSelectbox label, .stRadio label, .stTextArea label {
         color: #ffb74d !important;
         font-weight: 600 !important;
         font-size: 16px !important;
@@ -333,7 +338,7 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
 
-    # --- YENİ EKLENEN: İLİŞKİ ZAMAN ÇİZELGESİ (TIMELINE) ---
+    # --- İLİŞKİ ZAMAN ÇİZELGESİ (TIMELINE) ---
     st.markdown("---")
     st.header("🗺️ Anı Zaman Çizelgemiz")
     st.markdown(
@@ -399,7 +404,7 @@ if st.session_state.giris_yapildi:
     for item in bucket_list:
         st.checkbox(item, value=False)
 
-    # --- YENİ EKLENEN: MİNİ AŞK TESTİ ---
+    # --- MİNİ AŞK TESTİ ---
     st.markdown("---")
     st.header("💖 Mini Aşk & Anı Testi")
     cevap = st.radio(
@@ -482,7 +487,7 @@ if st.session_state.giris_yapildi:
         unsafe_allow_html=True,
     )
 
-    # --- YENİ EKLENEN: NOT BIRAKMA KUTUSU ---
+    # --- ANLIK NOT BIRAKMA KUTUSU (Yazıları Belirginleştirildi) ---
     st.markdown("---")
     st.header("💌 Anlık Not Bırakma Kutusu")
     yeni_not_metin = st.text_area(
